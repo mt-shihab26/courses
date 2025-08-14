@@ -31,3 +31,10 @@
 ## Foreign Keys
 
 - Foreign Key Constraints
+
+## Normalization
+
+- Revisiting the models design to reduce data redundancy
+- There is 7 normalization rules
+    - 1st normal form
+        - Each cell should have a single value and we cannot have repeated columns
