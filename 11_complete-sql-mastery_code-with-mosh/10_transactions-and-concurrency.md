@@ -43,7 +43,7 @@ SHOW VARIABLES LIKE 'autocommit'; -- auto commint on insert, update, delete oper
 - Repeatable Read
 - Serializable
 
-## Read Uncommitted
+## Read Uncommitted Isolation Lavel
 
 ```sql
 
@@ -66,7 +66,7 @@ WHERE customer_id =  1;
 COMMIT;
 ```
 
-## Read Committed
+## Read Committed Isolation Lavel
 
 ```
 
@@ -89,7 +89,7 @@ WHERE customer_id =  1;
 COMMIT;
 ```
 
-## Repeatable Read (Default in MySQL)
+## Repeatable Read Isolation Lavel (Default in MySQL)
 
 ```sql
 USE sql_store;
@@ -110,3 +110,29 @@ WHERE customer_id =  1;
 
 COMMIT;
 ```
+
+## Serializable Isolation Lavel
+
+```sql
+USE sql_store;
+
+SET TRANSACTION ISOLATION LAVEL SERIALIZABLE READ;
+
+SELECT points FROM customers WHERE customer_id = 1;
+```
+
+```sql
+USE sql_store;
+
+START TRANSACTION;
+
+UPDATE customers
+SET points = points + 20
+WHERE customer_id =  1;
+
+COMMIT;
+```
+
+## Deadlocks
+
+- Two or more transaction depends on each others, never gets fee. It's kind of loop between two transactions.
