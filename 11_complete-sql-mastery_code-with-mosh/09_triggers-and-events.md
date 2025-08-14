@@ -2,7 +2,7 @@
 
 ## Trigger
 
--   Triggers is a block of SQL code that automatically gets executed before or after an insert, update or delete statement.
+- Triggers is a block of SQL code that automatically gets executed before or after an insert, update or delete statement.
 
 ```sql
 DELIMITER $$
@@ -29,7 +29,7 @@ DROP TRIGGER IF EXISTS payments_after_insert; -- delete trigger
 
 ## Events
 
--   Event is a task (or block of SQL code) that gets executed according to a schedule
+- Event is a task (or block of SQL code) that gets executed according to a schedule
 
 ```sql
 SHOW VARIABLES; -- show all mysql system variables
@@ -43,10 +43,10 @@ SET GLOBAL event_scheduler = OFF; -- off event scheduler of mysql
 DELIMITER $$
 
 CREATE EVENT yearly_delete_stale_audit_rows
-ON SCHEDULE EVERY 1 YEAR 
+ON SCHEDULE EVERY 1 YEAR
 STARTS '2019-01-01'
 ENDS '2029-01-01'
-DO BEGIN 
+DO BEGIN
 	-- code here
 END $$
 

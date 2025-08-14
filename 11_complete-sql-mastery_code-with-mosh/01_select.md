@@ -281,11 +281,11 @@ FROM customers
 WHERE last_name REGEXP '[a-h]e';
 ```
 
--   `^` - beginning
--   `$` - end
--   `|` - logical or
--   `[abcd]e` - match characters with e
--   `[a-f]e` - match range of characters
+- `^` - beginning
+- `$` - end
+- `|` - logical or
+- `[abcd]e` - match characters with e
+- `[a-f]e` - match range of characters
 
 Exercise: Get the customers whose
 

@@ -1,18 +1,18 @@
 ## Numeric functions
 
--   ROUND():
-    -   `SELECT (ROUND(1.23))`
-    -   `SELECT (ROUND(1.7345, 2))`
--   TRUNCATE():
-    -   `SELECT (TRUNCATE(1.7345, 2))`
--   CEILING():
-    -   `SELECT (CEILING(5.7))`
--   FLOOR():
-    -   `SELECT (FLOOR(5.7))`
--   ABS():
-    -   `SELECT (ABS(-5.2))`
--   RAND():
-    -   `SELECT (RAND())`
+- ROUND():
+    - `SELECT (ROUND(1.23))`
+    - `SELECT (ROUND(1.7345, 2))`
+- TRUNCATE():
+    - `SELECT (TRUNCATE(1.7345, 2))`
+- CEILING():
+    - `SELECT (CEILING(5.7))`
+- FLOOR():
+    - `SELECT (FLOOR(5.7))`
+- ABS():
+    - `SELECT (ABS(-5.2))`
+- RAND():
+    - `SELECT (RAND())`
 
 ## String functions
 
@@ -51,7 +51,7 @@ SELECT EXTRACT(YEAR FROM NOW());
 
 ## Format date and time
 
--   MySQL represent date as string `2024-05-28` -> `YEAR-MONTH-DAY`
+- MySQL represent date as string `2024-05-28` -> `YEAR-MONTH-DAY`
 
 ```sql
 SELECT DATE_FORMAT(NOW(), "%y %Y %m %M %d"); -- 24 2024 05 May 07

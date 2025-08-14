@@ -1,9 +1,12 @@
 DROP DATABASE IF EXISTS `sql_invoicing`;
 CREATE DATABASE `sql_invoicing`; 
-USE `sql_invoicing`;
+use `sql_invoicing`
+;
 
-SET NAMES utf8 ;
-SET character_set_client = utf8mb4 ;
+set names utf8
+;
+set character_set_client = utf8mb4
+;
 
 CREATE TABLE `payment_methods` (
   `payment_method_id` tinyint(4) NOT NULL AUTO_INCREMENT,
@@ -88,7 +91,8 @@ INSERT INTO `payments` VALUES (8,5,18,'2019-01-08',10.00,2);
 
 DROP DATABASE IF EXISTS `sql_store`;
 CREATE DATABASE `sql_store`;
-USE `sql_store`;
+use `sql_store`
+;
 
 CREATE TABLE `products` (
   `product_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -225,7 +229,8 @@ INSERT INTO `order_item_notes` (`note_id`, `order_Id`, `product_id`, `note`) VAL
 
 DROP DATABASE IF EXISTS `sql_hr`;
 CREATE DATABASE `sql_hr`;
-USE `sql_hr`;
+use `sql_hr`
+;
 
 
 CREATE TABLE `offices` (
@@ -245,7 +250,6 @@ INSERT INTO `offices` VALUES (7,'9658 Wayridge Court','Boise','ID');
 INSERT INTO `offices` VALUES (8,'9 Grayhawk Trail','New York City','NY');
 INSERT INTO `offices` VALUES (9,'16862 Westend Hill','Knoxville','TN');
 INSERT INTO `offices` VALUES (10,'4 Bluestem Parkway','Savannah','GA');
-
 
 
 CREATE TABLE `employees` (
@@ -286,7 +290,8 @@ INSERT INTO `employees` VALUES (115357,'Ivy','Fearey','Structural Engineer',9271
 
 DROP DATABASE IF EXISTS `sql_inventory`;
 CREATE DATABASE `sql_inventory`;
-USE `sql_inventory`;
+use `sql_inventory`
+;
 
 
 CREATE TABLE `products` (
@@ -306,3 +311,4 @@ INSERT INTO `products` VALUES (7,'Sweet Pea Sprouts',98,3.29);
 INSERT INTO `products` VALUES (8,'Island Oasis - Raspberry',26,0.74);
 INSERT INTO `products` VALUES (9,'Longan',67,2.26);
 INSERT INTO `products` VALUES (10,'Broom - Push',6,1.09);
+

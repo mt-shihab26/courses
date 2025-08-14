@@ -45,17 +45,17 @@ CREATE PROCEDURE `make_payment`(
 	payment_date DATE
 )
 BEGIN
-	if payment_amount <= 0 THEN 
-		SIGNAL SQLSTATE '22003' 
+	if payment_amount <= 0 THEN
+		SIGNAL SQLSTATE '22003'
 		SET MESSAGE_TEXT = "Invalid payment amount";
 	END IF;
 
-	UPDATE 
+	UPDATE
 		invoices i
-	SET 
+	SET
 		i.payment_total = payment_amount,
 		i.payment_date = payment_date
-	WHERE 
+	WHERE
 		i.invoice_id = invoice_id;
 END
 ```
@@ -72,13 +72,13 @@ CREATE PROCEDURE `get_unpaid_invoices_for_client`(
 	OUT invoices_count INT,
 	OUT invoices_total DECIMAL(9, 2)
 )
-BEGIN 
-	SELECT 
-		COUNT(*), SUM(invoice_total) 
+BEGIN
+	SELECT
+		COUNT(*), SUM(invoice_total)
 			INTO invoices_count, invoices_total
-	FROM 
+	FROM
 		invoices i
-	WHERE 
+	WHERE
 		i.client_id = client_id AND payment_total = 0;
 END
 ```
@@ -107,13 +107,13 @@ BEGIN
     DECLARE local_invoices_count INT DEFAULT 0;
     DECLARE local_invoices_total DECIMAL(9, 2) DEFAULT 0.00;
 
-    SELECT 
+    SELECT
         COUNT(*), SUM(invoice_total)
-    INTO 
+    INTO
         local_invoices_count, local_invoices_total
-    FROM 
+    FROM
         invoices i
-    WHERE 
+    WHERE
         i.client_id = client_id AND payment_total = 0;
 
     SET invoices_count = local_invoices_count;
@@ -142,6 +142,6 @@ CREATE FUNCTION `get_risk_factor_for_client`(
     READS SQL DATA
 BEGIN
 
-   RETURN 1; 
+   RETURN 1;
 END
 ```
