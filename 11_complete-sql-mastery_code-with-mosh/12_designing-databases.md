@@ -38,3 +38,6 @@
 - There is 7 normalization rules
     - 1st normal form
         - Each cell should have a single value and we cannot have repeated columns
+        - Link table or Pivot table
+    - 2nd normal form
+    - 3th normal form
