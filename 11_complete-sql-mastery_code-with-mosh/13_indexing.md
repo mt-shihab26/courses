@@ -53,3 +53,57 @@ FROM customers;
 
 CREATE INDEX idx_first_name ON customers (first_name(6));
 ```
+
+## Full-text indexes
+
+```sql
+CREATE FULLTEXT INDEX idx_title_body ON posts (title, body);
+```
+
+```sql
+SELECT *
+FROM   posts
+WHERE  MATCH (title, body) AGAINST ('react redux');
+```
+
+```sql
+SELECT *, MATCH (title, body) AGAINST ('react redux')
+FROM   posts
+WHERE  MATCH (title, body) AGAINST ('react redux');
+```
+
+Boolean mode
+
+```sql
+SELECT *, MATCH (title, body) AGAINST ('react redux')
+FROM   posts
+WHERE  MATCH (title, body) AGAINST ('react -redux' IN BOOLEAN MODE);
+```
+
+```sql
+SELECT *, MATCH (title, body) AGAINST ('react redux')
+FROM   posts
+WHERE  MATCH (title, body) AGAINST ('react -redux +form' IN BOOLEAN MODE);
+```
+
+```sql
+SELECT *, MATCH (title, body) AGAINST ('react redux')
+FROM   posts
+WHERE  MATCH (title, body) AGAINST ('"handling a form"' IN BOOLEAN MODE);
+
+```
+
+## Composite Indexes
+
+```sql
+USE sql_store;
+
+SHOW INDEXES IN customers;
+
+EXPLAIN SELECT customer_id FROM customers
+WHERE state = 'CA' AND points > 1000;
+
+CREATE INDEX idx_state_points ON customers (state, points);
+
+
+```
