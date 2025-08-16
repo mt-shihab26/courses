@@ -41,3 +41,15 @@
         - Link table or Pivot table
     - 2nd normal form
     - 3th normal form
+
+## Character Set
+
+```sql
+SHOW CHARSET
+```
+
+## Storage Engine
+
+```sql
+SHOW ENGINES
+```
