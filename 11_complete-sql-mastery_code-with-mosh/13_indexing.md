@@ -118,3 +118,10 @@ CREATE INDEX idx_state_points ON customers (state, points);
 ```
 SHOW STATUS LIKE 'last_query_cost'
 ```
+
+## Converting Index
+
+## Index Maintenance
+
+- Duplicates Indexes
+- Redundant Indexes
