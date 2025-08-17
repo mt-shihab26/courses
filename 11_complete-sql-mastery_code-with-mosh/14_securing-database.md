@@ -63,5 +63,19 @@ TO moon_app;
 ## Viewing Privileges
 
 ```sql
-SHOW GRANT FOR shihab;
+SHOW GRANTS FOR shihab;
+```
+
+for current user
+
+```sql
+SHOW GRANTS FOR;
+```
+
+## Dropping Privileges
+
+```sql
+REVOKE SELECT, INSERT, UPDATE, DELETE, EXECUTE
+ON sql_store.*
+FROM moon_app;
 ```
