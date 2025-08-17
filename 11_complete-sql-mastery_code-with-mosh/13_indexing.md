@@ -112,3 +112,9 @@ CREATE INDEX idx_state_points ON customers (state, points);
 
 - Put the most frequently used columns first
 - Put the columns with higher cardinality first
+
+## Use Indexes for Sorting
+
+```
+SHOW STATUS LIKE 'last_query_cost'
+```
