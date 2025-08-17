@@ -107,3 +107,8 @@ CREATE INDEX idx_state_points ON customers (state, points);
 
 
 ```
+
+## Orders of columns on Composite Indexes
+
+- Put the most frequently used columns first
+- Put the columns with higher cardinality first
