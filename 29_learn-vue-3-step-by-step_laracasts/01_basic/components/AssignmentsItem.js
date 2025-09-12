@@ -1,9 +1,11 @@
 export default {
     template: `
-        <label>
-            {{ assignment.label }}
-            <input type="checkbox" v-model="assignment.complete" />
-        </label>
+        <li>
+            <label>
+                {{ assignment.label }}
+                <input type="checkbox" v-model="assignment.complete" />
+            </label>
+        </li>
     `,
     props: {
         assignment: Object,

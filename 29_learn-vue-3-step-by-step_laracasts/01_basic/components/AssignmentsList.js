@@ -8,9 +8,11 @@ export default {
         <section v-show="assignments.length">
             <h2>{{ title }}</h2>
             <ul>
-                <li v-for="assignment in assignments" :key="assignment.id">
-                    <AssignmentsItem :assignment="assignment" />
-                </li>
+                <AssignmentsItem
+                    v-for="assignment in assignments"
+                    :key="assignment.id"
+                    :assignment="assignment"
+                />
             </ul>
         </section>
     `,
