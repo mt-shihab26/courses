@@ -1,26 +1,21 @@
 import AssignmentsItem from './AssignmentsItem.js';
+import AssignmentTags from './AssignmentTags.js';
 
 export default {
     components: {
         AssignmentsItem,
+        AssignmentTags,
     },
     template: `
         <section v-show="assignments.length">
             <h2>{{ title }} ({{ assignments.length }})</h2>
 
-            <div>
-                <button 
-                    v-for="tag in tags"
-                    :key="tag"
-                    @click="currentTag = tag"
-                    :class="{
-                        secondary: currentTag !== tag 
-                    }" 
-                    style="margin-right: 10px;">
-                    {{ tag }}
-                </button>
-            </div>
-
+            <AssignmentTags
+                :initialTags="tags"
+                :currentTag="currentTag"
+                @change="tag => currentTag = tag"
+            />
+            
             <ul style="margin-top: 20px">
                 <AssignmentsItem
                     v-for="assignment in filteredAssignments"
@@ -41,7 +36,7 @@ export default {
     },
     computed: {
         tags() {
-            return ['all', ...new Set(this.assignments.map(a => a.tag))];
+            return [...new Set(this.assignments.map(a => a.tag))];
         },
         filteredAssignments() {
             if (this.currentTag === 'all') {
