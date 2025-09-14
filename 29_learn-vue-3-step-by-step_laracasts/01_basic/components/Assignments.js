@@ -7,7 +7,7 @@ export default {
         AssignmentCreate,
     },
     template: `
-        <section>
+        <section class="max-w-2xl mx-auto p-6 space-y-8">
             <AssignmentsList title="In Progress" :assignments="inProgress" />
             <AssignmentsList title="Completed" :assignments="completed" />
             <AssignmentCreate @add="add" />

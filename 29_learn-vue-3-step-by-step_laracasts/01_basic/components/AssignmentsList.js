@@ -7,15 +7,18 @@ export default {
         AssignmentTags,
     },
     template: `
-        <section v-show="assignments.length">
-            <h2>{{ title }} ({{ assignments.length }})</h2>
+        <section 
+            v-show="assignments.length" 
+            class="bg-white rounded-lg shadow-sm border border-gray-200 p-6"
+        >
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">{{ title }} ({{ assignments.length }})</h2>
 
             <AssignmentTags
                 :initialTags="tags"
                 v-model:currentTag="currentTag"
             />
             
-            <ul style="margin-top: 20px">
+            <ul class="mt-5 space-y-2">
                 <AssignmentsItem
                     v-for="assignment in filteredAssignments"
                     :key="assignment.id"

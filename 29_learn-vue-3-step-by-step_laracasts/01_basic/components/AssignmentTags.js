@@ -1,14 +1,15 @@
 export default {
     template: `
-        <div>
+        <div class="flex flex-wrap gap-2">
             <button
                 v-for="tag in tags"
                 :key="tag"
                 @click="$emit('update:currentTag', tag)"
                 :class="{
-                    secondary: currentTag !== tag
+                    'bg-blue-600 text-white': currentTag === tag,
+                    'bg-gray-200 text-gray-700 hover:bg-gray-300': currentTag !== tag
                 }"
-                style="margin-right: 10px;">
+                class="px-3 py-1 rounded-md text-sm font-medium transition-colors">
                 {{ tag }}
             </button>
         </div>
