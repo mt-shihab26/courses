@@ -33,7 +33,8 @@ export default {
         <Card
             :hidable="hidable"
         >
-            <template v-slot:heading>
+            <!-- <template v-slot:heading> -->
+            <template #heading>
                 {{ title }} ({{ assignments.length }})
             </template>
 
