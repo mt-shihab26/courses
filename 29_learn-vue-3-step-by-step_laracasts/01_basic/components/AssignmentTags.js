@@ -1,4 +1,13 @@
 export default {
+    props: {
+        initialTags: Array,
+        currentTag: String,
+    },
+    computed: {
+        tags() {
+            return ['all', ...this.initialTags];
+        },
+    },
     template: `
         <div class="flex flex-wrap gap-2">
             <button
@@ -14,13 +23,4 @@ export default {
             </button>
         </div>
     `,
-    props: {
-        initialTags: Array,
-        currentTag: String,
-    },
-    computed: {
-        tags() {
-            return ['all', ...this.initialTags];
-        },
-    },
 };

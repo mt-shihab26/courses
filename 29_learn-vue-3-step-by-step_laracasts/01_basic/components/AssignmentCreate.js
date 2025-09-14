@@ -1,4 +1,16 @@
 export default {
+    data() {
+        return {
+            newAssignment: '',
+        };
+    },
+    methods: {
+        add() {
+            if (this.newAssignment.trim().length <= 0) return;
+            this.$emit('add', this.newAssignment);
+            this.newAssignment = '';
+        },
+    },
     template: `
         <form @submit.prevent="add" class="mt-4 pt-4 border-t border-gray-200">
             <div class="flex gap-3">
@@ -16,16 +28,4 @@ export default {
             </div>
         </form>
     `,
-    data() {
-        return {
-            newAssignment: '',
-        };
-    },
-    methods: {
-        add() {
-            if (this.newAssignment.trim().length <= 0) return;
-            this.$emit('add', this.newAssignment);
-            this.newAssignment = '';
-        },
-    },
 };

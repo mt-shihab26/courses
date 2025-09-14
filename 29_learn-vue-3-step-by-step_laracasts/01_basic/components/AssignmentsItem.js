@@ -1,4 +1,7 @@
 export default {
+    props: {
+        assignment: Object,
+    },
     template: `
         <li class="flex items-center p-3 rounded-lg hover:bg-gray-50 transition-colors">
             <label 
@@ -14,7 +17,4 @@ export default {
             </label>
         </li>
     `,
-    props: {
-        assignment: Object,
-    },
 };

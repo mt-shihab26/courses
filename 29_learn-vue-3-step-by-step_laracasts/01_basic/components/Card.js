@@ -9,9 +9,9 @@ export default {
         <section 
             class="bg-white rounded-lg shadow-sm border border-gray-200 p-6"
         >
-            <div class="flex items-center justify-between mb-4">
-                <h2 class="text-xl font-semibold text-gray-800"><slot name="heading" /></h2>
-                <button v-show="hidable" @click="$emit('open', false)">&times;</button>
+            <div v-show="$slots.heading || hidable" class="flex items-center justify-between mb-4">
+                <h2 v-show="$slots.heading" class="text-xl font-semibold text-gray-800"><slot name="heading" /></h2>
+                <button class="cursor-pointer" v-show="hidable" @click="$emit('open', false)">&times;</button>
             </div>
 
             <slot />

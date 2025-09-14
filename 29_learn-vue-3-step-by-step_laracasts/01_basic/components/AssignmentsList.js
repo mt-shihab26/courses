@@ -8,27 +8,6 @@ export default {
         AssignmentTags,
         Card,
     },
-    template: `
-        <Card>
-            <template v-slot:heading>
-                {{ title }} ({{ assignments.length }})
-            </template>
-            <template v-slot:default>
-                <AssignmentTags
-                    :initialTags="tags"
-                    v-model:currentTag="currentTag"
-                />
-                <ul class="mt-5 space-y-2">
-                    <AssignmentsItem
-                        v-for="assignment in filteredAssignments"
-                        :key="assignment.id"
-                        :assignment="assignment"
-                    />
-                </ul>
-                <slot />
-            </template>
-        </Card>
-    `,
     props: {
         title: String,
         assignments: Array,
@@ -50,4 +29,28 @@ export default {
             return this.assignments.filter(a => a.tag === this.currentTag);
         },
     },
+    template: `
+        <Card
+            :hidable="hidable"
+        >
+            <template v-slot:heading>
+                {{ title }} ({{ assignments.length }})
+            </template>
+
+            <AssignmentTags
+                :initialTags="tags"
+                v-model:currentTag="currentTag"
+            />
+
+            <ul class="mt-5 space-y-2">
+                <AssignmentsItem
+                    v-for="assignment in filteredAssignments"
+                    :key="assignment.id"
+                    :assignment="assignment"
+                />
+            </ul>
+
+            <slot />
+        </Card>
+    `,
 };
