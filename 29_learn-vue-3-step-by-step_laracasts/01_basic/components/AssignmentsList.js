@@ -8,7 +8,6 @@ export default {
     },
     template: `
         <section 
-            v-show="assignments.length" 
             class="bg-white rounded-lg shadow-sm border border-gray-200 p-6"
         >
             <h2 class="text-xl font-semibold text-gray-800 mb-4">{{ title }} ({{ assignments.length }})</h2>
