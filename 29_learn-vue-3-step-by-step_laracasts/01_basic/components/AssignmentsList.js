@@ -1,34 +1,34 @@
 import AssignmentsItem from './AssignmentsItem.js';
 import AssignmentTags from './AssignmentTags.js';
+import Card from './Card.js';
 
 export default {
     components: {
         AssignmentsItem,
         AssignmentTags,
+        Card,
     },
     template: `
-        <section 
-            class="bg-white rounded-lg shadow-sm border border-gray-200 p-6"
-        >
-            <div class="flex items-center justify-between mb-4">
-                <h2 class="text-xl font-semibold text-gray-800">{{ title }} ({{ assignments.length }})</h2>
-                <button v-show="hidable" @click="$emit('open', false)">&times;</button>
-            </div>
-
-            <AssignmentTags
-                :initialTags="tags"
-                v-model:currentTag="currentTag"
-            />
-            
-            <ul class="mt-5 space-y-2">
-                <AssignmentsItem
-                    v-for="assignment in filteredAssignments"
-                    :key="assignment.id"
-                    :assignment="assignment"
+        <Card>
+            <template v-slot="heading">
+                {{ title }} ({{ assignments.length }})
+            </template>
+            <template v-slot="default">
+                <AssignmentTags
+                    :initialTags="tags"
+                    v-model:currentTag="currentTag"
                 />
-            </ul>
+                
+                <ul class="mt-5 space-y-2">
+                    <AssignmentsItem
+                        v-for="assignment in filteredAssignments"
+                        :key="assignment.id"
+                        :assignment="assignment"
+                    />
+                </ul>
 
-            <slot />
+                <slot />
+            </template>
         </section>
     `,
     props: {
