@@ -12,8 +12,7 @@ export default {
 
             <AssignmentTags
                 :initialTags="tags"
-                :currentTag="currentTag"
-                @change="tag => currentTag = tag"
+                v-model="currentTag"
             />
             
             <ul style="margin-top: 20px">

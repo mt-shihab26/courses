@@ -4,9 +4,9 @@ export default {
             <button
                 v-for="tag in tags"
                 :key="tag"
-                @click="$emit('change', tag)"
+                @click="$emit('update:modelValue', tag)"
                 :class="{
-                    secondary: currentTag !== tag
+                    secondary: modelValue !== tag
                 }"
                 style="margin-right: 10px;">
                 {{ tag }}
@@ -15,7 +15,7 @@ export default {
     `,
     props: {
         initialTags: Array,
-        currentTag: String,
+        modelValue: String,
     },
     computed: {
         tags() {

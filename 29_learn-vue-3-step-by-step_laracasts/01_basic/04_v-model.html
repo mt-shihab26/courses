@@ -10,6 +10,7 @@
 
     <body style="height: 100%; display: grid; place-items: center">
         <div id="app">
+            <!-- under the hood v-model -->
             <input type="text" :value="name" @input="e => name = e.target.value" />
 
             <p>{{ name }}</p>
