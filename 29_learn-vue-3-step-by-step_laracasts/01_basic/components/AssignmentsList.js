@@ -10,7 +10,10 @@ export default {
         <section 
             class="bg-white rounded-lg shadow-sm border border-gray-200 p-6"
         >
-            <h2 class="text-xl font-semibold text-gray-800 mb-4">{{ title }} ({{ assignments.length }})</h2>
+            <div class="flex items-center justify-between mb-4">
+                <h2 class="text-xl font-semibold text-gray-800">{{ title }} ({{ assignments.length }})</h2>
+                <button v-show="hidable">&times;</button>
+            </div>
 
             <AssignmentTags
                 :initialTags="tags"
@@ -31,6 +34,7 @@ export default {
     props: {
         title: String,
         assignments: Array,
+        hidable: false,
     },
     data() {
         return {

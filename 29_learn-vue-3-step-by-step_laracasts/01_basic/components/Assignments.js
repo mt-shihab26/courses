@@ -9,10 +9,18 @@ export default {
     template: `
         <section class="max-w-4xl mx-auto p-6 space-y-8">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <AssignmentsList title="In Progress" :assignments="inProgress">
+                <AssignmentsList 
+                    title="In Progress" 
+                    :assignments="inProgress"
+                >
                     <AssignmentCreate @add="add" />
                 </AssignmentsList >
-                <AssignmentsList title="Completed" :assignments="completed" />
+                <AssignmentsList 
+                    title="Completed" 
+                    :assignments="completed" 
+                    :hidable="true" 
+                    @click="$emit('toggle')" 
+                />
             </div>
         </section>
     `,
