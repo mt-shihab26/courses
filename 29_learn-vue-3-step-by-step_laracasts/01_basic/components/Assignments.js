@@ -16,10 +16,12 @@ export default {
                     <AssignmentCreate @add="add" />
                 </AssignmentsList >
                 <AssignmentsList 
+                    v-if="openCompleted"
                     title="Completed" 
                     :assignments="completed" 
                     :hidable="true" 
                     @click="$emit('toggle')" 
+                    @open="open => openCompleted = open"
                 />
             </div>
         </section>
@@ -27,6 +29,7 @@ export default {
     data() {
         return {
             assignments: [],
+            openCompleted: true,
         };
     },
     created() {

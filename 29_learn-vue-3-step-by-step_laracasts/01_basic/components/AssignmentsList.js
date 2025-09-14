@@ -12,7 +12,7 @@ export default {
         >
             <div class="flex items-center justify-between mb-4">
                 <h2 class="text-xl font-semibold text-gray-800">{{ title }} ({{ assignments.length }})</h2>
-                <button v-show="hidable">&times;</button>
+                <button v-show="hidable" @click="$emit('open', false)">&times;</button>
             </div>
 
             <AssignmentTags
