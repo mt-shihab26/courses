@@ -18,6 +18,11 @@ export default {
             assignments: [],
         };
     },
+    created() {
+        fetch('http://localhost:8000/assignments')
+            .then(r => r.json())
+            .then(data => (this.assignments = data));
+    },
     computed: {
         completed() {
             return this.assignments.filter(a => a.complete);
