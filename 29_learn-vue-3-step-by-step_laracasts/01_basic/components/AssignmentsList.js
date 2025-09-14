@@ -10,15 +10,14 @@ export default {
     },
     template: `
         <Card>
-            <template v-slot="heading">
+            <template v-slot:heading>
                 {{ title }} ({{ assignments.length }})
             </template>
-            <template v-slot="default">
+            <template v-slot:default>
                 <AssignmentTags
                     :initialTags="tags"
                     v-model:currentTag="currentTag"
                 />
-                
                 <ul class="mt-5 space-y-2">
                     <AssignmentsItem
                         v-for="assignment in filteredAssignments"
@@ -26,10 +25,9 @@ export default {
                         :assignment="assignment"
                     />
                 </ul>
-
                 <slot />
             </template>
-        </section>
+        </Card>
     `,
     props: {
         title: String,
