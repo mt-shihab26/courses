@@ -1,0 +1,30 @@
+<!doctype html>
+
+<html lang="en" style="height: 100%">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Document</title>
+        <script src="https://unpkg.com/vue@3"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+    </head>
+
+    <body style="height: 100%; display: grid; place-items: center">
+        <div id="app">
+            <input type="text" :value="name" @input="e => name = e.target.value" />
+
+            <p>{{ name }}</p>
+        </div>
+
+        <script type="module">
+            const App = {
+                data() {
+                    return {
+                        name: '',
+                    };
+                },
+            };
+
+            Vue.createApp(App).mount('#app');
+        </script>
+    </body>
+</html>
