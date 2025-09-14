@@ -1,11 +1,11 @@
 export default {
     template: `
-        <form @submit.prevent="add" class="bg-white rounded-lg shadow-sm border p-6">
+        <form @submit.prevent="add" class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
             <div class="flex gap-3">
                 <input 
                     placeholder="New assignment..." 
                     v-model="newAssignment"
-                    class="flex-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    class="flex-1 px-4 py-2 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 />
                 <button 
                     type="submit"
