@@ -3,10 +3,10 @@ defineProps<{
     modelValue: string;
 }>();
 
-defineEmits(['update:modelValue']);
+const emit = defineEmits(['update:modelValue']);
 
 const keydown = (e: KeyboardEvent) => {
-    const element = e.target as HTMLTextAreaElement;
+    const element = e.target as HTMLTextAreaElement | null;
     if (!element) return;
 
     switch (e.key) {
@@ -22,7 +22,12 @@ const keydown = (e: KeyboardEvent) => {
     }
 };
 
-const update = (e: KeyboardEvent) => {};
+const update = (e: KeyboardEvent) => {
+    const element = e.target as HTMLTextAreaElement | null;
+    if (!element) return;
+
+    emit('update:modelValue', element.value);
+};
 </script>
 
 <template>
