@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { useStorage } from '@/composables/use-storage'
+import { useStorage } from '@/composables/use-storage';
 
-const food = useStorage('food', 'salad')
-const age = useStorage('age')
+const food = useStorage('food', 'salad');
+const age = useStorage('age');
 
 setTimeout(() => {
-    food.value = 'changed'
-}, 2000)
+    food.value = 'changed';
+}, 2000);
 </script>
 
 <template>

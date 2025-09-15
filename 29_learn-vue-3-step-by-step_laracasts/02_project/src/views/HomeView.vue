@@ -26,19 +26,19 @@
 <!-- </script> -->
 
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { onMounted, ref } from 'vue';
 
-import TheWelcome from '@/components/TheWelcome.vue'
+import TheWelcome from '@/components/TheWelcome.vue';
 
-const message = ref('Hello World')
+const message = ref('Hello World');
 
 onMounted(() => {
-    console.log('hi here')
-})
+    console.log('hi here');
+});
 
 setTimeout(() => {
-    message.value = 'Changed'
-}, 2000)
+    message.value = 'Changed';
+}, 2000);
 </script>
 
 <template>
