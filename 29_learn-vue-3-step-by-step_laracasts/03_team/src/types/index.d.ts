@@ -3,3 +3,9 @@ export type TTeamMemeber = {
     email: string;
     status: string;
 };
+
+export type TTeam = {
+    name: string;
+    spots: number;
+    members: TTeamMemeber[];
+};

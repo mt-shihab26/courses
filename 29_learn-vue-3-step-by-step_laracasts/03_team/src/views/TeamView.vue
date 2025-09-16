@@ -1,31 +1,12 @@
 <script setup lang="ts">
+import TeamHeader from '@/components/screens/team/TeamHeader.vue';
 import TeamMemeber from '@/components/screens/team/TeamMemeber.vue';
 
 import data from '@/data.json';
 </script>
 
 <template>
-    <header class="flex justify-between">
-        <div>
-            <button
-                class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded disabled:bg-gray-400"
-                :disabled="data.spots === data.members.length"
-            >
-                Add Member ({{ data.spots - data.members.length }} Spots Left)
-            </button>
-        </div>
-        <div>
-            <div class="inline-flex items-center text-3xl relative">
-                <span class="text-yellow-500 text-3xl mr-2">😊</span>
-                <h3>{{ data.name }}</h3>
-                <div
-                    class="bg-green-400 w-5 h-5 text-xs text-white rounded-full flex justify-center items-center absolute -right-4 -top-2"
-                >
-                    {{ data.spots }}
-                </div>
-            </div>
-        </div>
-    </header>
+    <TeamHeader :team="data" />
 
     <div class="flex flex-col gap-y-3">
         <table class="table-fixed border-spacing-2 border-separate">
@@ -40,7 +21,7 @@ import data from '@/data.json';
                 <TeamMemeber v-for="member in data.members" :key="member.id" :member="member" />
             </tbody>
         </table>
-        <p class="text-right text-gray-600 italic">
+        <p v-show="data.spots === data.members.length" class="text-right text-gray-600 italic">
             There are no remaining team spots. Upgrade to add more.
         </p>
     </div>
