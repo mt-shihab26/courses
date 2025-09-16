@@ -26,6 +26,6 @@ import data from '@/data.json';
         </p>
     </div>
     <footer class="mt-12 bg-gray-100 py-4 text-center">
-        <h5 class="font-semibold text-lg">Smiley - 5 Member Team</h5>
+        <h5 class="font-semibold text-lg">Smiley - {{ data.members.length }} Member Team</h5>
     </footer>
 </template>
