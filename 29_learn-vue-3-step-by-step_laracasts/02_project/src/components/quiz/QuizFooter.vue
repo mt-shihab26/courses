@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import QuizFooterLinks from '@/components/Quiz/QuizFooterLinks.vue';
+import QuizFooterLinks from './QuizFooterLinks.vue';
 </script>
 
 <template>

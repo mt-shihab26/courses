@@ -3,9 +3,9 @@ import type { TQuiz } from '@/types';
 
 import { provide } from 'vue';
 
-import QuizHeader from '@/components/Quiz/QuizHeader.vue';
-import QuizQuestion from '@/components/Quiz/QuizQuestion.vue';
-import QuizFooter from '@/components/Quiz/QuizFooter.vue';
+import QuizHeader from './QuizHeader.vue';
+import QuizQuestion from './QuizQuestion.vue';
+import QuizFooter from './QuizFooter.vue';
 
 const props = defineProps<{ quiz: TQuiz }>();
 
