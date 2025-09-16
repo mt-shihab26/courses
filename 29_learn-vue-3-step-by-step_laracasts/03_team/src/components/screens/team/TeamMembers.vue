@@ -20,7 +20,7 @@ const team = useTeamStore();
                 <TeamMemeber v-for="member in team.members" :key="member.id" :member="member" />
             </tbody>
         </table>
-        <p v-show="team.spots === team.members.length" class="text-right text-gray-600 italic">
+        <p v-show="!team.spotsRemaining" class="text-right text-gray-600 italic">
             There are no remaining team spots. Upgrade to add more.
         </p>
     </div>
