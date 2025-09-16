@@ -1,0 +1,11 @@
+{
+  "name": "Smiley Team",
+  "spots": 5,
+  "members": [
+    { "id": 1, "name": "John Doe", "email": "john@doe.com", "status": "Active" },
+    { "id": 2, "name": "Sarah Doe", "email": "sarah@doe.com", "status": "Active" },
+    { "id": 3, "name": "Steven Doe", "email": "steven@doe.com", "status": "Active" },
+    { "id": 4, "name": "Jen Doe", "email": "jen@doe.com", "status": "Active" },
+    { "id": 5, "name": "Joe Doe", "email": "joe@doe.com", "status": "Active" }
+  ]
+}

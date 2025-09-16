@@ -1,4 +1,7 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import TeamMemeber from '@/components/screens/team/TeamMemeber.vue';
+import data from '@/data.json';
+</script>
 
 <template>
     <header class="flex justify-between">
@@ -33,80 +36,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr class="bg-gray-100 px-12">
-                    <td class="text-xl font-medium flex items-center gap-x-4 px-6 py-4">
-                        <img
-                            src="https://i.pravatar.cc/50?u=john@doe.com"
-                            alt=""
-                            class="rounded-full"
-                        />
-                        John Doe
-                    </td>
-                    <td class="text-gray-500 px-6 py-4">john@doe.com</td>
-                    <td class="px-6 py-4">
-                        <button class="text-green-400 text-xl">Active</button>
-                    </td>
-                </tr>
-
-                <tr class="bg-gray-100 px-12">
-                    <td class="text-xl font-medium flex items-center gap-x-4 px-6 py-4">
-                        <img
-                            src="https://i.pravatar.cc/50?u=sarah@doe.com"
-                            alt=""
-                            class="rounded-full"
-                        />
-                        Sarah Doe
-                    </td>
-                    <td class="text-gray-500 px-6 py-4">sarah@doe.com</td>
-                    <td class="px-6 py-4">
-                        <button class="text-green-400 text-xl">Active</button>
-                    </td>
-                </tr>
-
-                <tr class="bg-gray-100 px-12">
-                    <td class="text-xl font-medium flex items-center gap-x-4 px-6 py-4">
-                        <img
-                            src="https://i.pravatar.cc/50?u=steven@doe.com"
-                            alt=""
-                            class="rounded-full"
-                        />
-                        Steven Doe
-                    </td>
-                    <td class="text-gray-500 px-6 py-4">steven@doe.com</td>
-                    <td class="px-6 py-4">
-                        <button class="text-green-400 text-xl">Active</button>
-                    </td>
-                </tr>
-
-                <tr class="bg-gray-100 px-12">
-                    <td class="text-xl font-medium flex items-center gap-x-4 px-6 py-4">
-                        <img
-                            src="https://i.pravatar.cc/50?u=jen@doe.com"
-                            alt=""
-                            class="rounded-full"
-                        />
-                        Jen Doe
-                    </td>
-                    <td class="text-gray-500 px-6 py-4">jen@doe.com</td>
-                    <td class="px-6 py-4">
-                        <button class="text-green-400 text-xl">Active</button>
-                    </td>
-                </tr>
-
-                <tr class="bg-gray-100 px-12">
-                    <td class="text-xl font-medium flex items-center gap-x-4 px-6 py-4">
-                        <img
-                            src="https://i.pravatar.cc/50?u=joe@doe.com"
-                            alt=""
-                            class="rounded-full"
-                        />
-                        Joe Doe
-                    </td>
-                    <td class="text-gray-500 px-6 py-4">joe@doe.com</td>
-                    <td class="px-6 py-4">
-                        <button class="text-green-400 text-xl">Active</button>
-                    </td>
-                </tr>
+                <TeamMemeber v-for="member in data.members" :key="member.id" :member="member" />
             </tbody>
         </table>
         <p class="text-right text-gray-600 italic">
