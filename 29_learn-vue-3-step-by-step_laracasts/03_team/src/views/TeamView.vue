@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import TeamMemeber from '@/components/screens/team/TeamMemeber.vue';
+
 import data from '@/data.json';
 </script>
 
