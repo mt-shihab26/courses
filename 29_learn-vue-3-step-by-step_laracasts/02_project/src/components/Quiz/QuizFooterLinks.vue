@@ -1,5 +1,9 @@
 <script setup lang="ts">
-defineProps({ quiz: Object });
+import type { TQuiz } from '@/types';
+
+import { inject } from 'vue';
+
+const quiz = inject('quiz') as TQuiz;
 </script>
 
 <template>
