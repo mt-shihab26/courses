@@ -16,7 +16,9 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@tailwindcss/vite": "^4.1.13",
     "pinia": "^3.0.3",
+    "tailwindcss": "^4.1.13",
     "vue": "^3.5.18",
     "vue-router": "^4.5.1"
   },
@@ -36,5 +38,8 @@
     "vite": "^7.0.6",
     "vite-plugin-vue-devtools": "^8.0.0",
     "vue-tsc": "^3.0.4"
-  }
+  },
+  "trustedDependencies": [
+    "@tailwindcss/oxide"
+  ]
 }
