@@ -1,10 +1,12 @@
 <script setup lang="ts">
-import { counter } from '@/states/counter-store';
+import { useCounterStore } from '@/states/counter-store';
+
+const counter = useCounterStore();
 </script>
 
 <template>
     <div>
         <h1>{{ counter.count }}</h1>
-        <button @click="counter.increment">Increment</button>
+        <button @click="counter.setCount(counter.count + 1)">Increment</button>
     </div>
 </template>
