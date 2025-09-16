@@ -23,7 +23,7 @@
         </div>
     </header>
 
-    <div class="place-self-center flex flex-col gap-y-3">
+    <div class="flex flex-col gap-y-3">
         <table class="table-fixed border-spacing-2 border-separate">
             <thead>
                 <tr>
