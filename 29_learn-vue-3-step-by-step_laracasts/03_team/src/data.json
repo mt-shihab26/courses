@@ -1,6 +1,6 @@
 {
   "name": "Smiley Team",
-  "spots": 5,
+  "spots": 7,
   "members": [
     { "id": 1, "name": "John Doe", "email": "john@doe.com", "status": "Active" },
     { "id": 2, "name": "Sarah Doe", "email": "sarah@doe.com", "status": "Active" },
