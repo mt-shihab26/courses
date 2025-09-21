@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 from google import genai
 from sys import argv, exit
 from google.genai import types
+from lib.get_file_info import get_file_info
 
 
 def main():
@@ -12,6 +13,7 @@ def main():
 
     args = len(argv)
     if args < 2:
+        print("Usage: python src/main.py <prompt> [--verbose]")
         return exit(1)
 
     verbose = False
@@ -40,4 +42,5 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    # main()
+    get_file_info("data/calculator")
