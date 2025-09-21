@@ -1,7 +1,8 @@
 import os
 import tempfile
 import shutil
-from coding_agent.get_file_content import get_file_content, MAX_CHARS
+from coding_agent.get_file_content import get_file_content
+from coding_agent.config import MAX_CHARS
 
 
 def test_file_exists_and_readable():

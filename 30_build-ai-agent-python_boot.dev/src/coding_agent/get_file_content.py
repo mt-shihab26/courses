@@ -1,7 +1,5 @@
 from os import path
-
-
-MAX_CHARS = 10000
+from coding_agent.config import MAX_CHARS
 
 
 def get_file_content(working_directory: str, file_name: str) -> str:
