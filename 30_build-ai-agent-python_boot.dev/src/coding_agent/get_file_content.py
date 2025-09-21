@@ -3,16 +3,16 @@ from coding_agent.config import MAX_CHARS
 
 
 def get_file_content(working_directory: str, file_name: str) -> str:
-    target_dir = path.abspath(path.join(working_directory, file_name))
+    target_path = path.abspath(path.join(working_directory, file_name))
 
-    if not path.exists(target_dir):
+    if not path.exists(target_path):
         return f"Error: The file '{file_name}' was not found."
 
-    if not path.isfile(target_dir):
+    if not path.isfile(target_path):
         return f"Error: '{file_name}' is not a file."
 
     try:
-        with open(target_dir, "r") as file:
+        with open(target_path, "r") as file:
             file_content = file.read()
             truncate_content = file_content[:MAX_CHARS]
             if len(file_content) > len(truncate_content):
