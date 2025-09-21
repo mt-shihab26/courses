@@ -11,7 +11,7 @@ def get_file_info(base_working_dir: str, current_working_dir: Optional[str] = No
         abs_current_working_dir = path.abspath(dir)
 
     if not abs_current_working_dir.startswith(abs_base_working_dir):
-        return f'Error: "{current_working_dir}" is not a directory'
+        return f'Error: "{current_working_dir}" is not in the working directory'
 
     contents = listdir(abs_current_working_dir)
 
