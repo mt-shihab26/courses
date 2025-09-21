@@ -5,7 +5,7 @@ from sys import argv, exit
 from google.genai import types
 
 
-def main():
+def main() -> None:
     load_dotenv()
     api_key = environ.get("GEMINI_API_KEY")
     client = genai.Client(api_key=api_key)
@@ -38,7 +38,3 @@ def main():
     if verbose:
         print("Prompt tokens:", response.usage_metadata.prompt_token_count)
         print("Response tokens:", response.usage_metadata.candidates_token_count)
-
-
-if __name__ == "__main__":
-    main()
