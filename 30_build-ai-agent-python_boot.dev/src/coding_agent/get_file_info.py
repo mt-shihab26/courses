@@ -2,13 +2,13 @@ from typing import Optional
 from os import listdir, path
 
 
-def get_file_info(working_directory: str, directory: Optional[str] = None):
+def get_file_info(working_directory: str, directory_name: Optional[str] = None):
     target_dir = path.abspath(working_directory)
-    if directory is not None:
-        target_dir = path.abspath(path.join(working_directory, directory))
+    if directory_name is not None:
+        target_dir = path.abspath(path.join(working_directory, directory_name))
 
     if not path.exists(target_dir):
-        return f'Error: "{directory}" is not found'
+        return f"Error: The directory '{directory_name}' was not found."
 
     contents = listdir(target_dir)
     lines = ""
