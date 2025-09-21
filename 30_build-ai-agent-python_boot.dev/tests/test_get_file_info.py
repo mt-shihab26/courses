@@ -1,9 +1,11 @@
 from coding_agent.get_file_info import get_file_info
 
-error = get_file_info("data/calculator")
-if error:
-    print(error)
 
-error = get_file_info("data/calculator", "pkg")
-if error:
-    print(error)
+def test_get_file_info_default():
+    error = get_file_info("data/calculator")
+    assert error is None
+
+
+def test_get_file_info_with_pkg():
+    error = get_file_info("data/calculator", "pkg")
+    assert error is None
