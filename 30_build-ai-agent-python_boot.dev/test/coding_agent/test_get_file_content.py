@@ -12,3 +12,8 @@ def test_returns_file_content_when_file_exists():
     with open(path.join("data", "lorem.txt"), "r") as file:
         file_content = file.read()
     assert response == file_content
+
+
+def test_returns_error_message_when_path_is_directory():
+    response = get_file_content("data", "calculator")
+    assert response == "Error: 'calculator' is not a file."

@@ -7,6 +7,9 @@ def get_file_content(working_directory: str, file_name: str) -> str:
     if not path.exists(target_dir):
         return f"Error: The file '{file_name}' was not found."
 
+    if not path.isfile(target_dir):
+        return f"Error: '{file_name}' is not a file."
+
     try:
         with open(target_dir, "r") as file:
             file_content = file.read()
