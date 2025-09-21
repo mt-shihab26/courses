@@ -1,5 +1,4 @@
-from src.lib.get_file_info import get_file_info
-
+from coding_agent.get_file_info import get_file_info
 
 error = get_file_info("data/calculator")
 if error:
