@@ -11,4 +11,4 @@ def test_get_file_info_provided():
     response = get_file_content("data", "lorem.txt")
     with open(path.join("data", "lorem.txt"), "r") as file:
         file_content = file.read()
-    assert response != file_content
+    assert response == file_content

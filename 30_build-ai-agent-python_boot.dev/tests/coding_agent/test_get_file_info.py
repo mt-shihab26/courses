@@ -1,14 +1,20 @@
 from coding_agent.get_file_info import get_file_info
 
 
-def test_get_file_info_not_found():
+def test_directory_not_found_returns_error():
     response = get_file_info("data/calculator", "hello")
     assert response == "Error: The directory 'hello' was not found."
 
 
-def test_get_file_info_default():
+def test_returns_info_for_root_directory():
     response = get_file_info("data/calculator")
+    assert response is not None
+    assert isinstance(response, str)
+    assert len(response) > 0
 
 
-def test_get_file_info_with_pkg():
+def test_returns_info_for_subdirectory():
     response = get_file_info("data/calculator", "pkg")
+    assert response is not None
+    assert isinstance(response, str)
+    assert len(response) > 0
