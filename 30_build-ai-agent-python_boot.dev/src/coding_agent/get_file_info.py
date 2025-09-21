@@ -18,4 +18,4 @@ def get_file_info(working_directory: str, directory_name: Optional[str] = None):
         is_dir = path.isdir(content_path)
         lines += f"- {content}: file_size={file_size} bytes, is_dir={is_dir}\n"
 
-    print(lines)
+    return lines

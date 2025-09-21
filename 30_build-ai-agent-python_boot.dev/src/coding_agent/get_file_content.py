@@ -1,7 +1,7 @@
 from os import path
 
 
-def get_file_info(working_directory: str, file_name: str) -> str:
+def get_file_content(working_directory: str, file_name: str) -> str:
     target_dir = path.abspath(path.join(working_directory, file_name))
 
     if not path.exists(target_dir):
