@@ -1,4 +1,4 @@
-from lib.get_file_info import get_file_info
+from src.lib.get_file_info import get_file_info
 
 
 error = get_file_info("data/calculator")
