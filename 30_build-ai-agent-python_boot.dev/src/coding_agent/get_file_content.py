@@ -1,5 +1,7 @@
 from os import path
 
+MAX_CHARS = 10000
+
 
 def get_file_content(working_directory: str, file_name: str) -> str:
     target_dir = path.abspath(path.join(working_directory, file_name))
@@ -12,7 +14,7 @@ def get_file_content(working_directory: str, file_name: str) -> str:
 
     try:
         with open(target_dir, "r") as file:
-            file_content = file.read()
+            file_content = file.read(MAX_CHARS)
         return file_content
     except Exception as e:
         return f"Error: reading file: {e}"

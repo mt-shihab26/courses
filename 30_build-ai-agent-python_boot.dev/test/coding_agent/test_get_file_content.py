@@ -10,8 +10,9 @@ def test_returns_error_message_when_file_does_not_exist():
 def test_returns_file_content_when_file_exists():
     response = get_file_content("data", "lorem.txt")
     with open(path.join("data", "lorem.txt"), "r") as file:
-        file_content = file.read()
+        file_content = file.read(10000)
     assert response == file_content
+    assert len(response) == 10000
 
 
 def test_returns_error_message_when_path_is_directory():
