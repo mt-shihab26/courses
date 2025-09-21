@@ -2,16 +2,11 @@ from typing import Optional
 from os import listdir, path
 
 
-# - README.md: file_size=1032 bytes, is_dir=False
-# - src: file_size=128 bytes, is_dir=True
-# - package.json: file_size=1234 bytes, is_dir=False
-
-
 def get_file_info(working_dir: str, directory: Optional[str] = None):
     abs_working_dir = path.abspath(working_dir)
     if directory is None:
         directory = working_dir
-    abs_directory = path.abspath(directory)
+    abs_directory = path.abspath(path.join(working_dir, directory))
     if not abs_directory.startswith(abs_working_dir):
         return f'Error: "{directory}" is not a directory'
 

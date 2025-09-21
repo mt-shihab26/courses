@@ -43,4 +43,6 @@ def main():
 
 if __name__ == "__main__":
     # main()
-    get_file_info("data/calculator")
+    error = get_file_info("data/calculator", "pkg")
+    if error:
+        print(error)
