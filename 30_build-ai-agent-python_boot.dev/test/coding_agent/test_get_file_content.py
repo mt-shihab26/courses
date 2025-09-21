@@ -1,20 +1,92 @@
-from os import path
-from coding_agent.get_file_content import get_file_content
+import os
+import tempfile
+import shutil
+from coding_agent.get_file_content import get_file_content, MAX_CHARS
 
 
-def test_returns_error_message_when_file_does_not_exist():
-    response = get_file_content("data", "hello.txt")
-    assert response == "Error: The file 'hello.txt' was not found."
+def test_file_exists_and_readable():
+    temp_dir = tempfile.mkdtemp()
+    try:
+        test_file = os.path.join(temp_dir, "test.txt")
+        test_content = "Hello, world!"
+
+        with open(test_file, "w") as f:
+            f.write(test_content)
+
+        result = get_file_content(temp_dir, "test.txt")
+        assert result == test_content
+    finally:
+        shutil.rmtree(temp_dir)
 
 
-def test_returns_file_content_when_file_exists():
-    response = get_file_content("data", "lorem.txt")
-    with open(path.join("data", "lorem.txt"), "r") as file:
-        file_content = file.read(10000)
-    assert response == file_content
-    assert len(response) == 10000
+def test_file_not_found():
+    temp_dir = tempfile.mkdtemp()
+    try:
+        result = get_file_content(temp_dir, "nonexistent.txt")
+        assert result == "Error: The file 'nonexistent.txt' was not found."
+    finally:
+        shutil.rmtree(temp_dir)
 
 
-def test_returns_error_message_when_path_is_directory():
-    response = get_file_content("data", "calculator")
-    assert response == "Error: 'calculator' is not a file."
+def test_not_a_file():
+    temp_dir = tempfile.mkdtemp()
+    try:
+        subdir = os.path.join(temp_dir, "subdir")
+        os.makedirs(subdir)
+
+        result = get_file_content(temp_dir, "subdir")
+        assert result == "Error: 'subdir' is not a file."
+    finally:
+        shutil.rmtree(temp_dir)
+
+
+def test_file_truncation():
+    temp_dir = tempfile.mkdtemp()
+    try:
+        test_file = os.path.join(temp_dir, "large.txt")
+        large_content = "a" * (MAX_CHARS + 100)
+
+        with open(test_file, "w") as f:
+            f.write(large_content)
+
+        result = get_file_content(temp_dir, "large.txt")
+        expected_truncated = "a" * MAX_CHARS
+        expected_message = f"[...File] 'large.txt' truncated at {MAX_CHARS} characters"
+        expected_result = expected_truncated + expected_message
+
+        assert result == expected_result
+    finally:
+        shutil.rmtree(temp_dir)
+
+
+def test_empty_file():
+    temp_dir = tempfile.mkdtemp()
+    try:
+        test_file = os.path.join(temp_dir, "empty.txt")
+
+        with open(test_file, "w") as _:
+            pass
+
+        result = get_file_content(temp_dir, "empty.txt")
+        assert result == ""
+    finally:
+        shutil.rmtree(temp_dir)
+
+
+def test_unreadable_file():
+    temp_dir = tempfile.mkdtemp()
+    try:
+        test_file = os.path.join(temp_dir, "unreadable.txt")
+
+        with open(test_file, "w") as f:
+            f.write("test content")
+
+        os.chmod(test_file, 0o000)
+
+        try:
+            result = get_file_content(temp_dir, "unreadable.txt")
+            assert result.startswith("Error: reading file:")
+        finally:
+            os.chmod(test_file, 0o644)
+    finally:
+        shutil.rmtree(temp_dir)
