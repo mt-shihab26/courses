@@ -9,3 +9,8 @@ def test_get_file_info_default():
 def test_get_file_info_with_pkg():
     error = get_file_info("data/calculator", "pkg")
     assert error is None
+
+
+def test_get_file_info_hello():
+    error = get_file_info("data/calculator", "hello")
+    assert error == f'Error: "hello" is not in the working directory'
