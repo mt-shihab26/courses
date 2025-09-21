@@ -9,10 +9,14 @@ def main():
     client = genai.Client(api_key=api_key)
 
     response = client.models.generate_content(
-        model="gemini-2.0-flash-001", contents="What is paystubhero?"
+        model="gemini-2.0-flash-001", contents="What is paystubhero? on one line"
     )
+    if response is None or response.usage_metadata is None:
+        return
 
     print(response.text)
+    print(response.usage_metadata.prompt_token_count)
+    print(response.usage_metadata.candidates_token_count)
 
 
 if __name__ == "__main__":
