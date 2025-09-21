@@ -2,23 +2,25 @@ from typing import Optional
 from os import listdir, path
 
 
-def get_file_info(working_dir: str, directory: Optional[str] = None):
-    abs_working_dir = path.abspath(working_dir)
-    if directory is None:
-        directory = working_dir
-    abs_directory = path.abspath(path.join(working_dir, directory))
-    if not abs_directory.startswith(abs_working_dir):
-        return f'Error: "{directory}" is not a directory'
+def get_file_info(base_working_dir: str, current_working_dir: Optional[str] = None):
+    abs_base_working_dir = path.abspath(base_working_dir)
+
+    if current_working_dir is None:
+        abs_current_working_dir = abs_base_working_dir
+    else:
+        dir = path.join(base_working_dir, current_working_dir)
+        abs_current_working_dir = path.abspath(dir)
+
+    if not abs_current_working_dir.startswith(abs_base_working_dir):
+        return f'Error: "{current_working_dir}" is not a directory'
+
+    contents = listdir(abs_current_working_dir)
 
     lines = ""
-    contents = listdir(abs_directory)
     for content in contents:
-        content_path = path.join(abs_directory, content)
-
+        content_path = path.join(abs_current_working_dir, content)
         file_size = path.getsize(content_path)
         is_dir = path.isdir(content_path)
-
-        line = f"- {content}: file_size={file_size} bytes, is_dir={is_dir}\n"
-        lines += line
+        lines += f"- {content}: file_size={file_size} bytes, is_dir={is_dir}\n"
 
     print(lines)

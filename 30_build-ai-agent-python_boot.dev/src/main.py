@@ -3,7 +3,6 @@ from dotenv import load_dotenv
 from google import genai
 from sys import argv, exit
 from google.genai import types
-from lib.get_file_info import get_file_info
 
 
 def main():
@@ -42,7 +41,4 @@ def main():
 
 
 if __name__ == "__main__":
-    # main()
-    error = get_file_info("data/calculator", "pkg")
-    if error:
-        print(error)
+    main()
