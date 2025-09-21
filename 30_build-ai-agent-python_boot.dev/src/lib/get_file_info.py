@@ -5,9 +5,8 @@ from os import listdir, path
 def get_file_info(base_working_dir: str, current_working_dir: Optional[str] = None):
     abs_base_working_dir = path.abspath(base_working_dir)
 
-    if current_working_dir is None:
-        abs_current_working_dir = abs_base_working_dir
-    else:
+    abs_current_working_dir = abs_base_working_dir
+    if current_working_dir is not None:
         dir = path.join(base_working_dir, current_working_dir)
         abs_current_working_dir = path.abspath(dir)
 
