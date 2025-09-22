@@ -1,5 +1,5 @@
 from os import path
-import subprocess
+from subprocess import CalledProcessError, TimeoutExpired, run
 
 
 def get_python_file_path(working_directory: str, file_name: str) -> str:
@@ -22,26 +22,20 @@ def exec_python_code(file_path: str):
     timeout = 30
 
     try:
-        output = subprocess.run(
-            [binary, file_path],
-            timeout=timeout,
-            capture_output=True,
-        )
+        output = run([binary, file_path], timeout=timeout, capture_output=True)
         return output
-    except subprocess.TimeoutExpired:
+    except TimeoutExpired:
         raise Exception(f"Python execution timed out after {timeout} seconds")
-    except subprocess.CalledProcessError as e:
-        raise Exception(
-            f"Python execution failed with exit code {e.returncode}: {e.stderr.decode()}"
-        )
+    except CalledProcessError as e:
+        message = f"Python execution failed with exit code {e.returncode}: {e.stderr.decode()}"
+        raise Exception(message)
     except Exception as e:
         raise Exception(f"Failed to execute Python file: {e}")
 
 
-def run_python_file(working_directory: str, file_name: str) -> str:
+def run_python_file(working_directory: str, file_name: str):
     try:
         file_path = get_python_file_path(working_directory, file_name)
-        exec_python_code(file_path)
-        return ""
+        output = exec_python_code(file_path)
     except Exception as e:
         return f"Error: {e}"
