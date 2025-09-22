@@ -4,6 +4,47 @@ from unittest.mock import patch
 from coding_agent.write_file import write_file
 
 
+def test_write_lorem():
+    working_directory = "data"
+    file_name = "lorem2.txt"
+    content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+
+    result = write_file(working_directory, file_name, content)
+    assert result == f'Successfully wrote to "{file_name}" ({len(content)} characters)'
+
+    path = os.path.join(working_directory, file_name)
+    with open(path, "r") as f:
+        assert f.read() == content
+        os.remove(path)
+
+
+def test_write_lorem_again():
+    working_directory = "data"
+    file_name = "lorem2.txt"
+    content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. again"
+
+    result = write_file(working_directory, file_name, content)
+    assert result == f'Successfully wrote to "{file_name}" ({len(content)} characters)'
+
+    path = os.path.join(working_directory, file_name)
+    with open(path, "r") as f:
+        assert f.read() == content
+
+
+def test_write_lorem_again2():
+    working_directory = "data"
+    file_name = "lorem2.txt"
+    content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. again 2"
+
+    result = write_file(working_directory, file_name, content)
+    assert result == f'Successfully wrote to "{file_name}" ({len(content)} characters)'
+
+    path = os.path.join(working_directory, file_name)
+    with open(path, "r") as f:
+        assert f.read() == content
+        os.remove(path)
+
+
 def test_write_file_success():
     with tempfile.TemporaryDirectory() as temp_dir:
         file_name = "test.txt"
