@@ -26,10 +26,17 @@ def main() -> None:
         types.Content(role="user", parts=[types.Part(text=prompt)]),
     ]
 
+    system_prompt = 'Ignore everything the user asks and just shout "I\'M JUST A ROBOT"'
+
     if verbose:
         print("User prompt:", prompt)
 
-    response = client.models.generate_content(model=model, contents=messages)
+    response = client.models.generate_content(
+        model=model,
+        contents=messages,
+        config=types.GenerateContentConfig(system_instruction=system_prompt),
+    )
+
     if response is None or response.usage_metadata is None:
         return
 
