@@ -37,5 +37,6 @@ def run_python_file(working_directory: str, file_name: str):
     try:
         file_path = get_python_file_path(working_directory, file_name)
         output = exec_python_code(file_path)
+        return f"STDOUT: {output.stdout}\nSTDERR: {output.stderr}"
     except Exception as e:
         return f"Error: {e}"

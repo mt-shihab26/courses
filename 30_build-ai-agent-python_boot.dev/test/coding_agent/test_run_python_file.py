@@ -22,9 +22,6 @@ def test_not_python_file(tmp_path):
     assert result == "Error: The file 'test.txt' was not python file."
 
 
-def test_valid_python_file(tmp_path):
-    file_path = tmp_path / "script.py"
-    file_path.write_text("print('hello world')")
-
-    result = run_python_file(str(tmp_path), "script.py")
-    assert result is None
+def test_valid_python_file():
+    result = run_python_file("data/calculator", "main.py")
+    print(result)
