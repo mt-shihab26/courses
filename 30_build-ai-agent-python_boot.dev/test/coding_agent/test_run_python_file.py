@@ -23,5 +23,5 @@ def test_not_python_file(tmp_path):
 
 
 def test_valid_python_file():
-    result = run_python_file("data/calculator", "main.py")
+    result = run_python_file("data/calculator", "main.py", ["3 + 5"])
     print(result)

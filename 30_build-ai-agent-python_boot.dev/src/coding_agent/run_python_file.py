@@ -17,12 +17,12 @@ def get_python_file_path(working_directory: str, file_name: str) -> str:
     return target_path
 
 
-def exec_python_code(file_path: str):
+def exec_python_code(file_path: str, args):
     binary = "python"
     timeout = 30
 
     try:
-        output = run([binary, file_path], timeout=timeout, capture_output=True)
+        output = run([binary, file_path] + args, timeout=timeout, capture_output=True)
         return output
     except TimeoutExpired:
         raise Exception(f"Python execution timed out after {timeout} seconds")
@@ -33,10 +33,10 @@ def exec_python_code(file_path: str):
         raise Exception(f"Failed to execute Python file: {e}")
 
 
-def run_python_file(working_directory: str, file_name: str):
+def run_python_file(working_directory: str, file_name: str, args=[]):
     try:
         file_path = get_python_file_path(working_directory, file_name)
-        output = exec_python_code(file_path)
+        output = exec_python_code(file_path, args)
         return f"STDOUT: {output.stdout}\nSTDERR: {output.stderr}"
     except Exception as e:
         return f"Error: {e}"
