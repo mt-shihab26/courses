@@ -60,6 +60,21 @@ def test_write_dir():
         os.removedirs(working_directory)
 
 
+def test_write_sub_dir():
+    working_directory = "data/new-dir/new-dir2"
+    file_name = "lorem2.txt"
+    content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. again 2"
+
+    result = write_file(working_directory, file_name, content)
+    assert result == f'Successfully wrote to "{file_name}" ({len(content)} characters)'
+
+    path = os.path.join(working_directory, file_name)
+    with open(path, "r") as f:
+        assert f.read() == content
+        os.remove(path)
+        os.removedirs(working_directory)
+
+
 def test_write_file_success():
     with tempfile.TemporaryDirectory() as temp_dir:
         file_name = "test.txt"
