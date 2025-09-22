@@ -1,7 +1,8 @@
 from os import path
+import subprocess
 
 
-def get_python_code(working_directory: str, file_name: str) -> str:
+def get_python_file_path(working_directory: str, file_name: str) -> str:
     target_path = path.abspath(path.join(working_directory, file_name))
 
     if not path.exists(target_path):
@@ -13,16 +14,34 @@ def get_python_code(working_directory: str, file_name: str) -> str:
     if not target_path.endswith(".py"):
         raise ValueError(f"The file '{file_name}' was not python file.")
 
+    return target_path
+
+
+def exec_python_code(file_path: str):
+    binary = "python"
+    timeout = 30
+
     try:
-        with open(target_path, "r") as file:
-            file_content = file.read()
-        return file_content
+        output = subprocess.run(
+            [binary, file_path],
+            timeout=timeout,
+            capture_output=True,
+        )
+        return output
+    except subprocess.TimeoutExpired:
+        raise Exception(f"Python execution timed out after {timeout} seconds")
+    except subprocess.CalledProcessError as e:
+        raise Exception(
+            f"Python execution failed with exit code {e.returncode}: {e.stderr.decode()}"
+        )
     except Exception as e:
-        raise Exception(f"Error reading file: {e}")
+        raise Exception(f"Failed to execute Python file: {e}")
 
 
-def run_python_file(working_directory: str, file_name: str):
+def run_python_file(working_directory: str, file_name: str) -> str:
     try:
-        code = get_python_code(working_directory, file_name)
+        file_path = get_python_file_path(working_directory, file_name)
+        exec_python_code(file_path)
+        return ""
     except Exception as e:
         return f"Error: {e}"
