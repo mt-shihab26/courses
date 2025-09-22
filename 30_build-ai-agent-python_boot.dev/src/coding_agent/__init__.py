@@ -22,9 +22,7 @@ def main() -> None:
     prompt = argv[1]
     model = "gemini-2.0-flash-001"
 
-    messages = [
-        types.Content(role="user", parts=[types.Part(text=prompt)]),
-    ]
+    messages = [types.Content(role="user", parts=[types.Part(text=prompt)])]
 
     system_prompt = 'Ignore everything the user asks and just shout "I\'M JUST A ROBOT"'
 
