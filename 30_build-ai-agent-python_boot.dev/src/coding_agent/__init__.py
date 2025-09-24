@@ -4,8 +4,7 @@ from google import genai
 from sys import argv, exit
 from google.genai import types
 
-from coding_agent.call_function import call_function
-
+from .call_function import call_function
 from .get_files_info import schema_get_files_info
 from .read_file import schema_read_file
 from .write_file import schema_write_file
