@@ -35,25 +35,33 @@ def exec_python_code(file_path: str, args):
         raise Exception(f"Failed to execute Python file: {e}")
 
 
-def run_python_file(working_directory: str, file_name: str, args=[]):
+def run_python_file(working_directory: str, file_path: str, args=[]):
     try:
-        file_path = get_python_file_path(working_directory, file_name)
+        file_path = get_python_file_path(working_directory, file_path)
         output = exec_python_code(file_path, args)
-        return f"STDOUT: {output.stdout}\nSTDERR: {output.stderr}"
+        stdout_text = output.stdout.decode("utf-8") if output.stdout else ""
+        stderr_text = output.stderr.decode("utf-8") if output.stderr else ""
+        return f"STDOUT: {stdout_text}\nSTDERR: {stderr_text}"
     except Exception as e:
         return f"Error: {e}"
 
 
-schema_get_file_content = types.FunctionDeclaration(
-    name="get_file_content",
-    description="Gets the contents of the given file as a string, constrained to the working directory.",
+schema_run_python_file = types.FunctionDeclaration(
+    name="run_python_file",
+    description="Run a python file with python interpreter, Accepts additional CLI args as an optional array.",
     parameters=types.Schema(
         type=types.Type.OBJECT,
         properties={
             "file_path": types.Schema(
                 type=types.Type.STRING,
-                description="The path to the file, from the working directory.",
+                description="The file to run, relative to the working directory",
+            ),
+            "args": types.Schema(
+                type=types.Type.ARRAY,
+                description="Additional CLI arguments to pass to the python file",
+                items=types.Schema(type=types.Type.STRING),
             ),
         },
+        required=["file_name"],
     ),
 )
