@@ -23,8 +23,9 @@ When a user asks a question or makes a request, make a function call plan. You c
 - Execute Python files with optional arguments
 - Write or overwrite files
 
+When the user asks about the code project - they are referring to the working directory. So, you should typically start by looking at the project's files, and figuring out how to run the project.
+
 All paths you provide should be relative to the working directory.
-If you want to list the files and directories of the current working directory then use "." as a parameter for the directory.
 You do not need to specify the working directory in your function calls as it is automatically injected for security reasons.
 """
 
@@ -104,6 +105,8 @@ def main() -> None:
         if response.function_calls:
             for function_call in response.function_calls:
                 result = call_function(function_call, verbose)
+                if verbose:
+                    print("Tool response:", result)
                 name = function_call.name
                 if not name:
                     name = ""
