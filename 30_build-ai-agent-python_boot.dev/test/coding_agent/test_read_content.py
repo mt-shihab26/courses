@@ -1,7 +1,7 @@
 import os
 import tempfile
 import shutil
-from coding_agent.get_file_content import get_file_content
+from coding_agent.read_content import read_content
 from coding_agent.config import MAX_CHARS
 
 
@@ -14,7 +14,7 @@ def test_file_exists_and_readable():
         with open(test_file, "w") as f:
             f.write(test_content)
 
-        result = get_file_content(temp_dir, "test.txt")
+        result = read_content(temp_dir, "test.txt")
         assert result == test_content
     finally:
         shutil.rmtree(temp_dir)
@@ -23,7 +23,7 @@ def test_file_exists_and_readable():
 def test_file_not_found():
     temp_dir = tempfile.mkdtemp()
     try:
-        result = get_file_content(temp_dir, "nonexistent.txt")
+        result = read_content(temp_dir, "nonexistent.txt")
         assert result == "Error: The file 'nonexistent.txt' was not found."
     finally:
         shutil.rmtree(temp_dir)
@@ -35,7 +35,7 @@ def test_not_a_file():
         subdir = os.path.join(temp_dir, "subdir")
         os.makedirs(subdir)
 
-        result = get_file_content(temp_dir, "subdir")
+        result = read_content(temp_dir, "subdir")
         assert result == "Error: 'subdir' is not a file."
     finally:
         shutil.rmtree(temp_dir)
@@ -50,7 +50,7 @@ def test_file_truncation():
         with open(test_file, "w") as f:
             f.write(large_content)
 
-        result = get_file_content(temp_dir, "large.txt")
+        result = read_content(temp_dir, "large.txt")
         expected_truncated = "a" * MAX_CHARS
         expected_message = f"[...File] 'large.txt' truncated at {MAX_CHARS} characters"
         expected_result = expected_truncated + expected_message
@@ -68,7 +68,7 @@ def test_empty_file():
         with open(test_file, "w") as _:
             pass
 
-        result = get_file_content(temp_dir, "empty.txt")
+        result = read_content(temp_dir, "empty.txt")
         assert result == ""
     finally:
         shutil.rmtree(temp_dir)
@@ -85,7 +85,7 @@ def test_unreadable_file():
         os.chmod(test_file, 0o000)
 
         try:
-            result = get_file_content(temp_dir, "unreadable.txt")
+            result = read_content(temp_dir, "unreadable.txt")
             assert result.startswith("Error: reading file:")
         finally:
             os.chmod(test_file, 0o644)
