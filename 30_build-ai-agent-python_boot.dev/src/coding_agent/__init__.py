@@ -4,7 +4,7 @@ from google import genai
 from sys import argv, exit
 from google.genai import types
 from coding_agent.get_files_info import schema_get_files_info
-from coding_agent.get_file_content import schema_read_content
+from coding_agent.read_file import schema_read_file
 from coding_agent.write_file import schema_write_file
 from coding_agent.run_python_file import schema_run_python_file
 
@@ -41,7 +41,7 @@ All paths you provide should be relative to the working directory. You do not ne
     available_functions = types.Tool(
         function_declarations=[
             schema_get_files_info,
-            schema_read_content,
+            schema_read_file,
             schema_write_file,
             schema_run_python_file,
         ]
