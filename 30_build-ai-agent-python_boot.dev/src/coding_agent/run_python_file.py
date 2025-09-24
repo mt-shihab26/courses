@@ -1,6 +1,8 @@
 from os import path
 from subprocess import CalledProcessError, TimeoutExpired, run
 
+from google.genai import types
+
 
 def get_python_file_path(working_directory: str, file_name: str) -> str:
     target_path = path.abspath(path.join(working_directory, file_name))
@@ -40,3 +42,18 @@ def run_python_file(working_directory: str, file_name: str, args=[]):
         return f"STDOUT: {output.stdout}\nSTDERR: {output.stderr}"
     except Exception as e:
         return f"Error: {e}"
+
+
+schema_get_file_content = types.FunctionDeclaration(
+    name="get_file_content",
+    description="Gets the contents of the given file as a string, constrained to the working directory.",
+    parameters=types.Schema(
+        type=types.Type.OBJECT,
+        properties={
+            "file_path": types.Schema(
+                type=types.Type.STRING,
+                description="The path to the file, from the working directory.",
+            ),
+        },
+    ),
+)
