@@ -30,6 +30,28 @@ You do not need to specify the working directory in your function calls as it is
 """
 
 
+def log_messages_history(messages, iteration):
+    """Log all messages in the conversation history with verbose details."""
+    print(f"\n--- Messages History (Iteration {iteration}) ---")
+    for i, msg in enumerate(messages):
+        print(f"Message {i + 1}: Role={msg.role}")
+        if msg.parts:
+            for j, part in enumerate(msg.parts):
+                if hasattr(part, "text") and part.text:
+                    print(
+                        f"  Part {j + 1} (text): {part.text[:200]}{'...' if len(part.text) > 200 else ''}"
+                    )
+                elif hasattr(part, "function_call") and part.function_call:
+                    print(f"  Part {j + 1} (function_call): {part.function_call.name}")
+                elif hasattr(part, "function_response") and part.function_response:
+                    print(
+                        f"  Part {j + 1} (function_response): {str(part.function_response)[:200]}{'...' if len(str(part.function_response)) > 200 else ''}"
+                    )
+                else:
+                    print(f"  Part {j + 1}: {type(part).__name__}")
+    print("--- End Messages History ---\n")
+
+
 def main() -> None:
     load_dotenv()
     api_key = environ.get("GEMINI_API_KEY")
@@ -95,6 +117,9 @@ def main() -> None:
             )
             print("Prompt tokens:", response.usage_metadata.prompt_token_count)
             print("Response tokens:", response.usage_metadata.candidates_token_count)
+
+            # Log all messages after each iteration
+            log_messages_history(messages, iteration + 1)
 
         if response.candidates:
             for candidate in response.candidates:
