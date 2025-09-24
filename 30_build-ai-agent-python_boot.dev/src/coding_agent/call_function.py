@@ -16,28 +16,31 @@ def call_function(function_call: FunctionCall, verbose=False):
 
     if function_call.name == "get_files_info":
         if function_call.args is not None:
-            get_files_info(pwd, function_call.args["directory_name"])
+            return get_files_info(pwd, function_call.args["directory_name"])
         else:
-            print("Error: No arguments provided for get_files_info function")
+            return "Error: No arguments provided for get_files_info function"
 
     elif function_call.name == "read_file":
         if function_call.args is not None:
-            read_file(pwd, function_call.args["file_path"])
+            return read_file(pwd, function_call.args["file_path"])
         else:
-            print("Error: No arguments provided for read_file function")
+            return "Error: No arguments provided for read_file function"
 
     elif function_call.name == "write_file":
         if function_call.args is not None:
-            write_file(
+            return write_file(
                 pwd, function_call.args["file_path"], function_call.args["content"]
             )
         else:
-            print("Error: No arguments provided for write_file function")
+            return "Error: No arguments provided for write_file function"
 
     elif function_call.name == "run_python_file":
         if function_call.args is not None:
-            run_python_file(
+            return run_python_file(
                 pwd, function_call.args["file_path"], function_call.args["args"]
             )
         else:
-            print("Error: No arguments provided for run_python_file function")
+            return "Error: No arguments provided for run_python_file function"
+
+    else:
+        return f"Unknown function: {function_call.name}"
