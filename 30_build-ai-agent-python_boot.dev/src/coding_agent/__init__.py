@@ -4,6 +4,8 @@ from google import genai
 from sys import argv, exit
 from google.genai import types
 
+from coding_agent.call_function import call_function
+
 from .get_files_info import schema_get_files_info
 from .read_file import schema_read_file
 from .write_file import schema_write_file
@@ -72,7 +74,7 @@ All paths you provide should be relative to the working directory. You do not ne
         print("Response tokens:", response.usage_metadata.candidates_token_count)
 
     if response.function_calls:
-        for function_call_part in response.function_calls:
-            print(f"Running: {function_call_part.name}({function_call_part.args})")
+        for function_call in response.function_calls:
+            print(call_function(function_call))
     else:
         print(response.text)

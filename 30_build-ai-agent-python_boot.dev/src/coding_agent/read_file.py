@@ -1,6 +1,7 @@
 from os import path
 from google.genai import types
-from coding_agent.config import MAX_CHARS
+
+from .config import MAX_CHARS
 
 
 def read_file(working_directory: str, file_path: str) -> str:
