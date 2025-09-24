@@ -36,8 +36,9 @@ def call_function(function_call: FunctionCall, verbose=False):
 
     elif function_call.name == "run_python_file":
         if function_call.args is not None:
+            args = function_call.args.get("args", [])
             return run_python_file(
-                pwd, function_call.args["file_path"], function_call.args["args"]
+                pwd, function_call.args["file_path"], args
             )
         else:
             return "Error: No arguments provided for run_python_file function"

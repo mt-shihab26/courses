@@ -40,6 +40,8 @@ When a user asks a question or makes a request, make a function call plan. You c
 - Write to a file (create or update)
 - Run a Python file with optional arguments
 
+When asked to run a Python file, execute it directly without asking for arguments unless the user specifically mentions arguments. If no arguments are mentioned, assume no arguments are needed and run with empty args array.
+
 All paths you provide should be relative to the working directory. You do not need to specify the working directory in your function calls as it is automatically injected for security reasons.
     """
 
@@ -74,6 +76,6 @@ All paths you provide should be relative to the working directory. You do not ne
 
     if response.function_calls:
         for function_call in response.function_calls:
-            print(call_function(function_call))
+            print(call_function(function_call, verbose))
     else:
         print(response.text)

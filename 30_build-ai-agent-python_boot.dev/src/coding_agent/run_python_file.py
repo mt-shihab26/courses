@@ -3,27 +3,28 @@ from subprocess import CalledProcessError, TimeoutExpired, run
 from google.genai import types
 
 
-def get_python_file_path(working_directory: str, file_name: str) -> str:
-    target_path = path.abspath(path.join(working_directory, file_name))
+def get_python_file_path(working_directory: str, file_path: str) -> str:
+    target_path = path.abspath(path.join(working_directory, file_path))
 
     if not path.exists(target_path):
-        raise FileNotFoundError(f"The file '{file_name}' was not found.")
+        raise FileNotFoundError(f"The file '{file_path}' was not found.")
 
     if not path.isfile(target_path):
-        raise ValueError(f"'{file_name}' is not a file.")
+        raise ValueError(f"'{file_path}' is not a file.")
 
     if not target_path.endswith(".py"):
-        raise ValueError(f"The file '{file_name}' was not python file.")
+        raise ValueError(f"The file '{file_path}' was not python file.")
 
     return target_path
 
 
-def exec_python_code(file_path: str, args):
+def exec_python_code(file_path: str, args=[]):
     binary = "python"
     timeout = 30
 
     try:
-        output = run([binary, file_path] + args, timeout=timeout, capture_output=True)
+        command_args = [binary, file_path] + args
+        output = run(command_args, timeout=timeout, capture_output=True)
         return output
     except TimeoutExpired:
         raise Exception(f"Python execution timed out after {timeout} seconds")
@@ -47,7 +48,7 @@ def run_python_file(working_directory: str, file_path: str, args=[]):
 
 schema_run_python_file = types.FunctionDeclaration(
     name="run_python_file",
-    description="Run a python file with python interpreter, Accepts additional CLI args as an optional array.",
+    description="Execute a python file directly with python interpreter. Just run the file - no need to read contents first. The args parameter is optional - if not provided, runs with no additional arguments.",
     parameters=types.Schema(
         type=types.Type.OBJECT,
         properties={
@@ -57,7 +58,7 @@ schema_run_python_file = types.FunctionDeclaration(
             ),
             "args": types.Schema(
                 type=types.Type.ARRAY,
-                description="Additional CLI arguments to pass to the python file",
+                description="Additional CLI arguments to pass to the python file. Default is empty array if not provided.",
                 items=types.Schema(type=types.Type.STRING),
             ),
         },
