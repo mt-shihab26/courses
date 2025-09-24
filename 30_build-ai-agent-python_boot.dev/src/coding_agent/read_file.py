@@ -4,7 +4,7 @@ from google.genai import types
 from coding_agent.config import MAX_CHARS
 
 
-def read_content(working_directory: str, file_path: str) -> str:
+def read_file(working_directory: str, file_path: str) -> str:
     target_path = path.abspath(path.join(working_directory, file_path))
 
     if not path.exists(target_path):
@@ -25,8 +25,8 @@ def read_content(working_directory: str, file_path: str) -> str:
         return f"Error: reading file: {e}"
 
 
-schema_read_content = types.FunctionDeclaration(
-    name="read_content",
+schema_read_file = types.FunctionDeclaration(
+    name="read_file",
     description="Gets the contents of the given file as a string, constrained to the working directory.",
     parameters=types.Schema(
         type=types.Type.OBJECT,
