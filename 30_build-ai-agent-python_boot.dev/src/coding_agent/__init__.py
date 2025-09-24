@@ -11,6 +11,21 @@ from .read_file import schema_read_file
 from .write_file import schema_write_file
 from .run_python_file import schema_run_python_file
 
+system_prompt = """
+You are a helpful AI coding agent.
+
+When a user asks a question or makes a request, make a function call plan. You can perform the following operations:
+
+- List files and directories
+- Read file contents
+- Execute Python files with optional arguments
+- Write or overwrite files
+
+All paths you provide should be relative to the working directory.
+If you want to list the files and directories of the current working directory then use "." as a parameter for the directory.
+You do not need to specify the working directory in your function calls as it is automatically injected for security reasons.
+"""
+
 
 def main() -> None:
     load_dotenv()
@@ -30,23 +45,6 @@ def main() -> None:
     model = "gemini-2.0-flash-001"
 
     messages = [types.Content(role="user", parts=[types.Part(text=prompt)])]
-
-    system_prompt = """
-You are a helpful AI coding agent working in the current working directory.
-
-When a user asks a question or makes a request, make a function call plan. You can perform the following operations:
-
-- List files and directories
-- Read the content of file
-- Write to a file (create or update)
-- Run a Python file with optional arguments
-
-When asked to run a Python file, execute it directly without asking for arguments unless the user specifically mentions arguments. If no arguments are mentioned, assume no arguments are needed and run with empty args array.
-
-When users ask about files or code without specifying full paths, first explore the current working directory to understand what files are available. Use the get_files_info function to list files when needed.
-
-All paths you provide should be relative to the working directory. You do not need to specify the working directory in your function calls as it is automatically injected for security reasons.
-    """
 
     available_functions = types.Tool(
         function_declarations=[
@@ -89,7 +87,7 @@ All paths you provide should be relative to the working directory. You do not ne
                 result = call_function(function_call, verbose)
                 messages.append(
                     types.Content(
-                        role="tool",
+                        role="model",
                         parts=[types.Part(text=result)],
                     )
                 )
