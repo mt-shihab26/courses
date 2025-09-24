@@ -1,8 +1,10 @@
 from os import environ
 from dotenv import load_dotenv
 from google import genai
+from google.genai import errors
 from sys import argv, exit
 from google.genai import types
+import time
 
 from .config import MAX_ITERS
 from .call_function import call_function
@@ -61,19 +63,35 @@ def main() -> None:
     )
 
     for iteration in range(0, MAX_ITERS):
-        response = client.models.generate_content(
-            model=model,
-            contents=messages,
-            config=config,
-        )
+        try:
+            response = client.models.generate_content(
+                model=model,
+                contents=messages,
+                config=config,
+            )
 
-        if response is None or response.usage_metadata is None:
-            print("response is malformed")
+            if response is None or response.usage_metadata is None:
+                print("response is malformed")
+                return
+
+        except errors.ClientError as e:
+            if "429" in str(e) or "RESOURCE_EXHAUSTED" in str(e):
+                print("Rate limit exceeded. Waiting 60 seconds...")
+                time.sleep(60)
+                continue
+            else:
+                print(f"API Error: {e}")
+                return
+        except Exception as e:
+            print(f"Unexpected error: {e}")
             return
 
         if verbose:
             print(f"Iteration {iteration + 1}/{MAX_ITERS}")
-            print("User prompt:", prompt if iteration == 0 else "[continuing conversation]")
+            print(
+                "User prompt:",
+                prompt if iteration == 0 else "[continuing conversation]",
+            )
             print("Prompt tokens:", response.usage_metadata.prompt_token_count)
             print("Response tokens:", response.usage_metadata.candidates_token_count)
 
@@ -86,10 +104,18 @@ def main() -> None:
         if response.function_calls:
             for function_call in response.function_calls:
                 result = call_function(function_call, verbose)
+                name = function_call.name
+                if not name:
+                    name = ""
                 messages.append(
                     types.Content(
-                        role="model",
-                        parts=[types.Part(text=result)],
+                        role="tool",
+                        parts=[
+                            types.Part.from_function_response(
+                                name=name,
+                                response={"result": result},
+                            )
+                        ],
                     )
                 )
         else:
@@ -99,17 +125,32 @@ def main() -> None:
                 messages.append(
                     types.Content(
                         role="user",
-                        parts=[types.Part(text="Continue analyzing and provide more details or ask clarifying questions if needed.")]
+                        parts=[
+                            types.Part(
+                                text="Continue analyzing and provide more details or ask clarifying questions if needed."
+                            )
+                        ],
                     )
                 )
+                return
             else:
                 if verbose:
                     print("Empty response, continuing...")
                 messages.append(
                     types.Content(
                         role="user",
-                        parts=[types.Part(text="Please provide a more detailed analysis or continue your investigation.")]
+                        parts=[
+                            types.Part(
+                                text="Please provide a more detailed analysis or continue your investigation."
+                            )
+                        ],
                     )
                 )
 
-    print(f"Agent completed {MAX_ITERS} iterations. Use --verbose flag for detailed output.")
+        # Sleep between iterations to avoid rate limiting
+        if iteration < MAX_ITERS - 1:  # Don't sleep after the last iteration
+            time.sleep(2)
+
+    print(
+        f"Agent completed {MAX_ITERS} iterations. Use --verbose flag for detailed output."
+    )
