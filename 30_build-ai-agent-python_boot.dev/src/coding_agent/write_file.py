@@ -1,4 +1,5 @@
 from os import makedirs, path
+from google.genai import types
 
 
 def write_file(working_directory: str, file_name: str, content: str):
@@ -12,8 +13,28 @@ def write_file(working_directory: str, file_name: str, content: str):
             return f"Error: Could not create parent dirs: {parent_dir}, error: {e}."
 
     try:
-        with open(target_path, "w") as file:
+        with open(target_path, "w", encoding="utf-8") as file:
             file.write(content)
         return f'Successfully wrote to "{file_name}" ({len(content)} characters)'
     except Exception as e:
         return f"Error: Could not write to file {file_name}, error: {e}."
+
+
+schema_write_file = types.FunctionDeclaration(
+    name="write_file",
+    description="Write content to a file, constrained to the working directory. Creates parent directories if needed.",
+    parameters=types.Schema(
+        type=types.Type.OBJECT,
+        properties={
+            "file_name": types.Schema(
+                type=types.Type.STRING,
+                description="The path to the file to write, relative to the working directory.",
+            ),
+            "content": types.Schema(
+                type=types.Type.STRING,
+                description="The content to write to the file.",
+            ),
+        },
+        required=["file_name", "content"],
+    ),
+)
