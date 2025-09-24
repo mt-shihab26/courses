@@ -16,7 +16,10 @@ def call_function(function_call: FunctionCall, verbose=False) -> str:
 
     if function_call.name == "get_files_info":
         if function_call.args is not None:
-            return get_files_info(pwd, function_call.args["directory_name"])
+            if "directory_name" in function_call.args:
+                return get_files_info(pwd, function_call.args["directory_name"])
+            else:
+                return get_files_info(pwd, None)
         else:
             return "Error: No arguments provided for get_files_info function"
 

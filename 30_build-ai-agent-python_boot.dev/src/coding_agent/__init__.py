@@ -32,7 +32,7 @@ def main() -> None:
     messages = [types.Content(role="user", parts=[types.Part(text=prompt)])]
 
     system_prompt = """
-You are a helpful AI coding agent.
+You are a helpful AI coding agent working in the current working directory.
 
 When a user asks a question or makes a request, make a function call plan. You can perform the following operations:
 
@@ -42,6 +42,8 @@ When a user asks a question or makes a request, make a function call plan. You c
 - Run a Python file with optional arguments
 
 When asked to run a Python file, execute it directly without asking for arguments unless the user specifically mentions arguments. If no arguments are mentioned, assume no arguments are needed and run with empty args array.
+
+When users ask about files or code without specifying full paths, first explore the current working directory to understand what files are available. Use the get_files_info function to list files when needed.
 
 All paths you provide should be relative to the working directory. You do not need to specify the working directory in your function calls as it is automatically injected for security reasons.
     """
