@@ -12,7 +12,7 @@ def call_function(function_call: FunctionCall, verbose=False) -> str:
     if verbose:
         print(f"Calling function: {function_call.name}({function_call.args})")
     else:
-        print(f"Calling function: {function_call.name}")
+        print(f"Calling function: {function_call.name} with {function_call.args}")
 
     if function_call.name == "get_files_info":
         if function_call.args is not None:

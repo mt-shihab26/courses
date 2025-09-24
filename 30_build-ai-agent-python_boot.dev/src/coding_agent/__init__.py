@@ -120,18 +120,7 @@ def main() -> None:
                 )
         else:
             if response.text:
-                if verbose:
-                    print("Agent response:", response.text)
-                messages.append(
-                    types.Content(
-                        role="user",
-                        parts=[
-                            types.Part(
-                                text="Continue analyzing and provide more details or ask clarifying questions if needed."
-                            )
-                        ],
-                    )
-                )
+                print("Agent response:", response.text)
                 return
             else:
                 if verbose:
@@ -148,7 +137,7 @@ def main() -> None:
                 )
 
         # Sleep between iterations to avoid rate limiting
-        if iteration < MAX_ITERS - 1:  # Don't sleep after the last iteration
+        if iteration < MAX_ITERS - 1:
             time.sleep(2)
 
     print(
