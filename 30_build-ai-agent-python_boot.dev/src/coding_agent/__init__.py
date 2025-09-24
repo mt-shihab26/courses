@@ -4,6 +4,7 @@ from google import genai
 from sys import argv, exit
 from google.genai import types
 
+from .config import MAX_ITERS
 from .call_function import call_function
 from .get_files_info import schema_get_files_info
 from .read_file import schema_read_file
@@ -59,23 +60,38 @@ All paths you provide should be relative to the working directory. You do not ne
         system_instruction=system_prompt,
     )
 
-    if verbose:
-        print("User prompt:", prompt)
+    for _ in range(0, MAX_ITERS):
+        response = client.models.generate_content(
+            model=model,
+            contents=messages,
+            config=config,
+        )
 
-    response = client.models.generate_content(
-        model=model, contents=messages, config=config
-    )
+        if response is None or response.usage_metadata is None:
+            print("response is malformed")
+            return
 
-    if response is None or response.usage_metadata is None:
-        print("response is malformed")
-        return
+        if verbose:
+            print("User prompt:", prompt)
+            print("Prompt tokens:", response.usage_metadata.prompt_token_count)
+            print("Response tokens:", response.usage_metadata.candidates_token_count)
 
-    if verbose:
-        print("Prompt tokens:", response.usage_metadata.prompt_token_count)
-        print("Response tokens:", response.usage_metadata.candidates_token_count)
+        if response.candidates:
+            for candidate in response.candidates:
+                if candidate is None or candidate.content is None:
+                    continue
+                messages.append(candidate.content)
 
-    if response.function_calls:
-        for function_call in response.function_calls:
-            print(call_function(function_call, verbose))
-    else:
-        print(response.text)
+        if response.function_calls:
+            for function_call in response.function_calls:
+                result = call_function(function_call, verbose)
+                messages.append(
+                    types.Content(
+                        role="tool",
+                        parts=[types.Part(text=result)],
+                    )
+                )
+
+        else:
+            print(response.text)
+            return

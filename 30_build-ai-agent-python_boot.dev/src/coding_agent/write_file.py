@@ -2,7 +2,7 @@ from os import makedirs, path
 from google.genai import types
 
 
-def write_file(working_directory: str, file_path: str, content: str):
+def write_file(working_directory: str, file_path: str, content: str) -> str:
     target_path = path.abspath(path.join(working_directory, file_path))
 
     parent_dir = path.dirname(target_path)

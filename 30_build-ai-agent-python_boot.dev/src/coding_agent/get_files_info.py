@@ -3,7 +3,7 @@ from os import listdir, path
 from google.genai import types
 
 
-def get_files_info(working_directory: str, directory_name: Optional[str] = None):
+def get_files_info(working_directory: str, directory_name: Optional[str] = None) -> str:
     target_path = path.abspath(working_directory)
     if directory_name is not None:
         target_path = path.abspath(path.join(working_directory, directory_name))

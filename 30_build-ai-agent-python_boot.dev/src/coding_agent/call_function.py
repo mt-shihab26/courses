@@ -8,7 +8,7 @@ from .run_python_file import run_python_file
 pwd = "data/calculator"
 
 
-def call_function(function_call: FunctionCall, verbose=False):
+def call_function(function_call: FunctionCall, verbose=False) -> str:
     if verbose:
         print(f"Calling function: {function_call.name}({function_call.args})")
     else:
@@ -37,9 +37,7 @@ def call_function(function_call: FunctionCall, verbose=False):
     elif function_call.name == "run_python_file":
         if function_call.args is not None:
             args = function_call.args.get("args", [])
-            return run_python_file(
-                pwd, function_call.args["file_path"], args
-            )
+            return run_python_file(pwd, function_call.args["file_path"], args)
         else:
             return "Error: No arguments provided for run_python_file function"
 
