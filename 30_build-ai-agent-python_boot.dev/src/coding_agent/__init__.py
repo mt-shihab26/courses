@@ -60,7 +60,7 @@ def main() -> None:
         system_instruction=system_prompt,
     )
 
-    for _ in range(0, MAX_ITERS):
+    for iteration in range(0, MAX_ITERS):
         response = client.models.generate_content(
             model=model,
             contents=messages,
@@ -72,7 +72,8 @@ def main() -> None:
             return
 
         if verbose:
-            print("User prompt:", prompt)
+            print(f"Iteration {iteration + 1}/{MAX_ITERS}")
+            print("User prompt:", prompt if iteration == 0 else "[continuing conversation]")
             print("Prompt tokens:", response.usage_metadata.prompt_token_count)
             print("Response tokens:", response.usage_metadata.candidates_token_count)
 
@@ -91,7 +92,24 @@ def main() -> None:
                         parts=[types.Part(text=result)],
                     )
                 )
-
         else:
-            print(response.text)
-            return
+            if response.text:
+                if verbose:
+                    print("Agent response:", response.text)
+                messages.append(
+                    types.Content(
+                        role="user",
+                        parts=[types.Part(text="Continue analyzing and provide more details or ask clarifying questions if needed.")]
+                    )
+                )
+            else:
+                if verbose:
+                    print("Empty response, continuing...")
+                messages.append(
+                    types.Content(
+                        role="user",
+                        parts=[types.Part(text="Please provide a more detailed analysis or continue your investigation.")]
+                    )
+                )
+
+    print(f"Agent completed {MAX_ITERS} iterations. Use --verbose flag for detailed output.")
