@@ -1,6 +1,7 @@
 {
     "main": "expo-router/entry",
     "private": true,
+    "type": "module",
     "scripts": {
         "dev": "expo start -c",
         "format": "prettier --write ./",

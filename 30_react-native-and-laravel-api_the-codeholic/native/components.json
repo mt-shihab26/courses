@@ -3,6 +3,7 @@
     "style": "new-york",
     "rsc": false,
     "tsx": true,
+    "iconLibrary": "lucide",
     "tailwind": {
         "config": "",
         "css": "global.css",
@@ -15,6 +16,5 @@
         "ui": "@/components/ui",
         "lib": "@/lib",
         "hooks": "@/hooks"
-    },
-    "iconLibrary": "lucide"
+    }
 }
