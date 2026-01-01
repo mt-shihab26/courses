@@ -15,7 +15,7 @@ const themes: { name: TTheme; label: string; icon: string }[] = [
 export const ThemeSwitcher = () => {
     const { theme, hasAdaptiveThemes } = useUniwind();
 
-    const activeTheme = hasAdaptiveThemes ? 'system' : theme;
+    const activeTheme: TTheme = hasAdaptiveThemes ? 'system' : theme;
 
     return (
         <View className="flex-row gap-2">
@@ -23,14 +23,20 @@ export const ThemeSwitcher = () => {
                 <Pressable
                     key={t.name}
                     onPress={() => Uniwind.setTheme(t.name)}
-                    className={cn('items-center rounded-lg px-4 py-3', {
-                        'bg-primary': activeTheme === t.name,
-                    })}
+                    className={cn(
+                        'border-border bg-card rounded-lg border p-1',
+                        'items-center rounded-md px-4 py-3',
+                        'transition-colors duration-200',
+                        {
+                            'bg-primary shadow-sm': activeTheme === t.name,
+                            'active:bg-muted bg-transparent': activeTheme !== t.name,
+                        },
+                    )}
                 >
                     <Text className="mb-1 text-2xl">{t.icon}</Text>
                     <Text
-                        className={cn('text-xs', {
-                            'text-white': activeTheme === t.name,
+                        className={cn('text-muted-foreground text-xs font-medium', {
+                            'text-primary-foreground': activeTheme === t.name,
                         })}
                     >
                         {t.label}
