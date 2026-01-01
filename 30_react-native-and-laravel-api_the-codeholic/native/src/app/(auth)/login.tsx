@@ -2,9 +2,7 @@ import type { TextInput } from 'react-native';
 
 import { useRef } from 'react';
 
-import { ORSeparator } from '@/components/elements/or-seperator';
 import { PromptLink } from '@/components/elements/prompt-link';
-import { SocialConnections } from '@/components/elements/social-connections';
 import { EmailInput } from '@/components/inputs/email-input';
 import { PasswordInput } from '@/components/inputs/password-input';
 import { Button } from '@/components/ui/button';
@@ -45,8 +43,6 @@ const Login = () => {
                 <Text>Continue</Text>
             </Button>
             <PromptLink message="Don't have an account?" label="Sign up" href="/register" />
-            <ORSeparator />
-            <SocialConnections />
         </AuthWrapper>
     );
 };
