@@ -1,6 +1,6 @@
 import { useTheme } from '@react-navigation/native';
 
-import { BackPressable } from '@/components/elements/back-pressable';
+import { BackButton } from '@/components/elements/back-button';
 import { Tabs } from 'expo-router';
 import { HouseIcon, SettingsIcon } from 'lucide-react-native';
 
@@ -21,7 +21,7 @@ const Layout = () => {
                 options={{
                     title: 'Settings',
                     tabBarIcon: ({ size, color }) => <SettingsIcon size={size} color={color} />,
-                    headerLeft: BackPressable,
+                    headerLeft: BackButton,
                 }}
             />
         </Tabs>

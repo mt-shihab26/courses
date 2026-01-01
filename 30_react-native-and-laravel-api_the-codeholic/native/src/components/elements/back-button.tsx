@@ -1,18 +1,17 @@
-import { useTheme } from '@react-navigation/native';
 import { useRouter } from 'expo-router';
 
 import { Button } from '@/components/ui/button';
+import { Icon } from '@/components/ui/icon';
 import { ChevronLeftIcon } from 'lucide-react-native';
 import { View } from 'react-native';
 
-export const BackPressable = () => {
+export const BackButton = () => {
     const { back } = useRouter();
-    const { colors } = useTheme();
 
     return (
-        <View className="pl-4">
+        <View className="pl-2">
             <Button variant="ghost" size="icon" onPress={() => back()}>
-                <ChevronLeftIcon size={24} color={colors.primary} />
+                <Icon as={ChevronLeftIcon} className="text-primary size-6" />
             </Button>
         </View>
     );
