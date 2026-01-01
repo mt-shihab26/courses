@@ -36,18 +36,16 @@ const Login = () => {
                             keyboardType="email-address"
                             autoComplete="email"
                             autoCapitalize="none"
-                            onSubmitEditing={() => passwordInputRef.current?.focus()}
+                            onSubmitEditing={passwordInputRef.current?.focus}
                             returnKeyType="next"
                             submitBehavior="submit"
                         />
                     </View>
                     <View className="gap-1.5">
-                        <View className="flex-row items-center">
+                        <View className="flex-row items-center justify-between">
                             <Label htmlFor="password">Password</Label>
                             <Link href="/forgot-password">
-                                <Button variant="link" size="sm" className="web:h-fit ml-auto h-4 px-1 py-0 sm:h-4">
-                                    <Text className="leading-4 font-normal">Forgot your password?</Text>
-                                </Button>
+                                <Text className="text-sm leading-4 font-normal">Forgot your password?</Text>
                             </Link>
                         </View>
                         <Input
