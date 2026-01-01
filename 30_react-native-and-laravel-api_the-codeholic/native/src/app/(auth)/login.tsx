@@ -28,8 +28,24 @@ const Login = () => {
                     Welcome back! Please sign in to continue
                 </Text>
                 <View className="gap-6">
-                    <EmailInput onSubmitEditing={() => passwordInputRef.current?.focus()} />
-                    <PasswordInput ref={passwordInputRef} showForgotPassword onSubmitEditing={handleSubmit} />
+                    <EmailInput
+                        required={true}
+                        value=""
+                        error=""
+                        onSubmitEditing={() => passwordInputRef.current?.focus()}
+                    />
+                    <PasswordInput
+                        ref={passwordInputRef}
+                        required={true}
+                        error=""
+                        showForgotPassword
+                        onSubmitEditing={handleSubmit}
+                        labelRight={
+                            <Link href="/forgot-password">
+                                <Text className="text-sm leading-4 font-normal">Forgot your password?</Text>
+                            </Link>
+                        }
+                    />
                     <Button className="w-full" onPress={handleSubmit}>
                         <Text>Continue</Text>
                     </Button>

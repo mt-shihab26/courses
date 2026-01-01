@@ -1,37 +1,28 @@
-import type { ComponentPropsWithoutRef } from 'react';
+import type { ComponentPropsWithoutRef, ReactNode, RefObject } from 'react';
 import type { TextInput } from 'react-native';
 
-import { forwardRef } from 'react';
-
+import { InputWrapper } from '@/components/elements/input-wrapper';
 import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Text } from '@/components/ui/text';
-import { Link } from 'expo-router';
-import { View } from 'react-native';
 
-interface PasswordInputProps extends Omit<ComponentPropsWithoutRef<typeof Input>, 'id'> {
+export const PasswordInput = ({
+    label = 'Password',
+    required,
+    showForgotPassword = false,
+    error,
+    ref,
+    labelRight,
+    ...props
+}: Omit<ComponentPropsWithoutRef<typeof Input>, 'id'> & {
     label?: string;
+    required?: boolean;
     showForgotPassword?: boolean;
     error?: string;
-}
-
-export const PasswordInput = forwardRef<TextInput, PasswordInputProps>(
-    ({ label = 'Password', showForgotPassword = false, error, ...props }, ref) => {
-        return (
-            <View className="gap-1.5">
-                <View className="flex-row items-center justify-between">
-                    <Label htmlFor="password">{label}</Label>
-                    {showForgotPassword && (
-                        <Link href="/forgot-password">
-                            <Text className="text-sm leading-4 font-normal">Forgot your password?</Text>
-                        </Link>
-                    )}
-                </View>
-                <Input ref={ref} id="password" secureTextEntry returnKeyType="send" {...props} />
-                {error && <Text className="text-destructive text-sm">{error}</Text>}
-            </View>
-        );
-    },
-);
-
-PasswordInput.displayName = 'PasswordInput';
+    ref?: RefObject<TextInput | null>;
+    labelRight?: ReactNode;
+}) => {
+    return (
+        <InputWrapper label={label} htmlFor="password" required={required} error={error} labelRight={labelRight}>
+            <Input ref={ref} id="password" secureTextEntry returnKeyType="send" {...props} />
+        </InputWrapper>
+    );
+};
