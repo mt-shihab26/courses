@@ -15,8 +15,7 @@ export const AuthWrapper = ({
     return (
         <ScrollView
             keyboardShouldPersistTaps="handled"
-            contentContainerClassName="sm:flex-1 items-center justify-center p-4 py-8 sm:py-4 sm:p-6 mt-safe"
-            keyboardDismissMode="interactive"
+            contentContainerClassName="grow items-center justify-center p-4 gap-6"
         >
             <View className="w-full gap-6">
                 <View className="gap-2">
