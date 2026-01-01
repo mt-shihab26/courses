@@ -34,7 +34,6 @@ const Login = () => {
                 ref={passwordInputRef}
                 required={true}
                 error=""
-                showForgotPassword
                 onSubmitEditing={handleSubmit}
                 labelRight={
                     <Link href="/forgot-password">
