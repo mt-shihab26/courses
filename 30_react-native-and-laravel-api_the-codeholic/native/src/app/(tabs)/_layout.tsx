@@ -11,7 +11,7 @@ const Layout = () => {
         <Tabs
             screenOptions={{
                 tabBarActiveTintColor: colors.primary,
-                headerShown: false,
+                headerShown: true,
             }}
         >
             <Tabs.Screen
