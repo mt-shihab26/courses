@@ -1,10 +1,10 @@
 import { useRef } from 'react';
 
+import { ORSeparator } from '@/components/elements/or-seperator';
 import { EmailInput } from '@/components/inputs/email-input';
 import { PasswordInput } from '@/components/inputs/password-input';
 import { SocialConnections } from '@/components/screens/auth/social-connections';
 import { Button } from '@/components/ui/button';
-import { Separator } from '@/components/ui/separator';
 import { Text } from '@/components/ui/text';
 import { Link } from 'expo-router';
 import { ScrollView, TextInput, View } from 'react-native';
@@ -23,44 +23,40 @@ const Login = () => {
             keyboardDismissMode="interactive"
         >
             <View className="w-full gap-6">
-                <Text className="text-center text-xl sm:text-left">Sign in to your app</Text>
-                <Text className="text-muted-foreground text-center sm:text-left">
-                    Welcome back! Please sign in to continue
-                </Text>
-                <View className="gap-6">
-                    <EmailInput
-                        required={true}
-                        value=""
-                        error=""
-                        onSubmitEditing={() => passwordInputRef.current?.focus()}
-                    />
-                    <PasswordInput
-                        ref={passwordInputRef}
-                        required={true}
-                        error=""
-                        showForgotPassword
-                        onSubmitEditing={handleSubmit}
-                        labelRight={
-                            <Link href="/forgot-password">
-                                <Text className="text-sm leading-4 font-normal">Forgot your password?</Text>
-                            </Link>
-                        }
-                    />
-                    <Button className="w-full" onPress={handleSubmit}>
-                        <Text>Continue</Text>
-                    </Button>
+                <View className="gap-2">
+                    <Text className="text-center text-xl sm:text-left">Sign in to your app</Text>
+                    <Text className="text-muted-foreground text-center sm:text-left">
+                        Welcome back! Please sign in to continue
+                    </Text>
                 </View>
+                <EmailInput
+                    required={true}
+                    value=""
+                    error=""
+                    onSubmitEditing={() => passwordInputRef.current?.focus()}
+                />
+                <PasswordInput
+                    ref={passwordInputRef}
+                    required={true}
+                    error=""
+                    showForgotPassword
+                    onSubmitEditing={handleSubmit}
+                    labelRight={
+                        <Link href="/forgot-password">
+                            <Text className="text-sm leading-4 font-normal">Forgot your password?</Text>
+                        </Link>
+                    }
+                />
+                <Button className="w-full" onPress={handleSubmit}>
+                    <Text>Continue</Text>
+                </Button>
                 <Text className="flex-1 items-center text-center text-sm">
                     Don&apos;t have an account?{' '}
                     <Link href="/register" className="text-sm underline underline-offset-4">
                         Sign up
                     </Link>
                 </Text>
-                <View className="flex-row items-center">
-                    <Separator className="flex-1" />
-                    <Text className="text-muted-foreground px-4 text-sm">or</Text>
-                    <Separator className="flex-1" />
-                </View>
+                <ORSeparator />
                 <SocialConnections />
             </View>
         </ScrollView>
