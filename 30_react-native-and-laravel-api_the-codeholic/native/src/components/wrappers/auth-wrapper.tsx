@@ -19,8 +19,8 @@ export const AuthWrapper = ({
         >
             <View className="w-full gap-6">
                 <View className="gap-2">
-                    <Text className="text-center text-xl sm:text-left">{title}</Text>
-                    <Text className="text-muted-foreground text-center sm:text-left">{description}</Text>
+                    <Text className="text-center text-xl">{title}</Text>
+                    <Text className="text-muted-foreground text-center">{description}</Text>
                 </View>
                 {children}
             </View>
