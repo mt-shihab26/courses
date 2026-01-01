@@ -5,18 +5,22 @@ import { InputWrapper } from '@/components/wrappers/input-wrapper';
 
 export const EmailInput = ({
     label = 'Email',
+    id,
+    name,
     required,
     error,
     ...props
 }: Omit<ComponentPropsWithoutRef<typeof Input>, 'id'> & {
+    id: string;
     label?: string;
+    name?: string;
     required?: boolean;
     error?: string;
 }) => {
     return (
-        <InputWrapper label={label} htmlFor="email" required={required} error={error}>
+        <InputWrapper label={label} htmlFor={id} required={required} error={error}>
             <Input
-                id="email"
+                id={id}
                 placeholder="m@example.com"
                 keyboardType="email-address"
                 autoComplete="email"

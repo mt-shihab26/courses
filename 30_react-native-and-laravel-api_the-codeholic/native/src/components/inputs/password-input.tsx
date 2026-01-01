@@ -11,6 +11,8 @@ import { Pressable, View } from 'react-native';
 
 export const PasswordInput = ({
     label = 'Password',
+    id,
+    name,
     required,
     showForgotPassword = false,
     error,
@@ -18,7 +20,9 @@ export const PasswordInput = ({
     labelRight,
     ...props
 }: Omit<ComponentPropsWithoutRef<typeof Input>, 'id'> & {
+    id: string;
     label?: string;
+    name?: string;
     required?: boolean;
     showForgotPassword?: boolean;
     error?: string;
@@ -28,11 +32,11 @@ export const PasswordInput = ({
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
     return (
-        <InputWrapper label={label} htmlFor="password" required={required} error={error} labelRight={labelRight}>
+        <InputWrapper label={label} htmlFor={id} required={required} error={error} labelRight={labelRight}>
             <View className="relative">
                 <Input
                     ref={ref}
-                    id="password"
+                    id={id}
                     secureTextEntry={!isPasswordVisible}
                     returnKeyType="send"
                     className="pr-12"
