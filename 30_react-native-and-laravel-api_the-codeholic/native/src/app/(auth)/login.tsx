@@ -4,9 +4,9 @@ import { useRef } from 'react';
 
 import { ORSeparator } from '@/components/elements/or-seperator';
 import { PromptLink } from '@/components/elements/prompt-link';
+import { SocialConnections } from '@/components/elements/social-connections';
 import { EmailInput } from '@/components/inputs/email-input';
 import { PasswordInput } from '@/components/inputs/password-input';
-import { SocialConnections } from '@/components/screens/auth/social-connections';
 import { Button } from '@/components/ui/button';
 import { Text } from '@/components/ui/text';
 import { AuthWrapper } from '@/components/wrappers/auth-wrapper';

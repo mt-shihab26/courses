@@ -4,10 +4,10 @@ import { useRef } from 'react';
 
 import { ORSeparator } from '@/components/elements/or-seperator';
 import { PromptLink } from '@/components/elements/prompt-link';
+import { SocialConnections } from '@/components/elements/social-connections';
 import { EmailInput } from '@/components/inputs/email-input';
+import { FieldInput } from '@/components/inputs/field-input';
 import { PasswordInput } from '@/components/inputs/password-input';
-import { TextInput } from '@/components/inputs/text-input';
-import { SocialConnections } from '@/components/screens/auth/social-connections';
 import { Button } from '@/components/ui/button';
 import { Text } from '@/components/ui/text';
 import { AuthWrapper } from '@/components/wrappers/auth-wrapper';
@@ -22,7 +22,7 @@ const Register = () => {
 
     return (
         <AuthWrapper title="Create your account" description="Welcome! Please fill in the details to get started.">
-            <TextInput
+            <FieldInput
                 id="name"
                 label="Name"
                 placeholder="John Doe"

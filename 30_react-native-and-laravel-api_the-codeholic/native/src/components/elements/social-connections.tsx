@@ -1,7 +1,8 @@
-import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
-import { Image, Platform, View } from 'react-native';
 import { useUniwind } from 'uniwind';
+
+import { Button } from '@/components/ui/button';
+import { Image, Platform, View } from 'react-native';
 
 const SOCIAL_CONNECTION_STRATEGIES = [
     {

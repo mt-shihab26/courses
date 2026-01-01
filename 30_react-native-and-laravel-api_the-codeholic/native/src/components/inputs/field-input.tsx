@@ -4,7 +4,7 @@ import type { TextInput as RNTextInput } from 'react-native';
 import { Input } from '@/components/ui/input';
 import { InputWrapper } from '@/components/wrappers/input-wrapper';
 
-export const TextInput = ({
+export const FieldInput = ({
     label,
     id,
     required,
