@@ -1,6 +1,8 @@
 import { useTheme } from '@react-navigation/native';
 
 import { BackButton } from '@/components/elements/back-button';
+import { HeaderLeft } from '@/components/elements/header-left';
+import { HeaderTitle } from '@/components/elements/header-title';
 import { Tabs } from 'expo-router';
 import { HouseIcon, SettingsIcon } from 'lucide-react-native';
 
@@ -8,7 +10,15 @@ const Layout = () => {
     const { colors } = useTheme();
 
     return (
-        <Tabs screenOptions={{ tabBarActiveTintColor: colors.primary }}>
+        <Tabs
+            screenOptions={{
+                tabBarActiveTintColor: colors.primary,
+                headerShown: true,
+                headerShadowVisible: true,
+                headerLeft: HeaderLeft,
+                headerTitle: HeaderTitle,
+            }}
+        >
             <Tabs.Screen
                 name="index"
                 options={{
