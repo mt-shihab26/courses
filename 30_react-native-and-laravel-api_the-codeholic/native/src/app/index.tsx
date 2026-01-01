@@ -7,7 +7,7 @@ const Index = () => {
         <>
             <View className="flex-1 items-center justify-center">
                 <Button>
-                    <Text>Star the Repo</Text>
+                    <Text>Hello</Text>
                 </Button>
             </View>
         </>
