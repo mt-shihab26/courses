@@ -14,7 +14,7 @@ export const AuthWrapper = ({
 }) => {
     return (
         <ScrollView keyboardShouldPersistTaps="handled" contentContainerClassName="p-4 gap-6">
-            <View className="w-full gap-6">
+            <View className="mx-auto w-full max-w-md gap-6">
                 <View className="gap-2">
                     <Text className="text-center text-xl">{title}</Text>
                     <Text className="text-muted-foreground text-center">{description}</Text>
