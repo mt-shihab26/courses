@@ -17,7 +17,7 @@ export const AuthWrapper = ({
             keyboardShouldPersistTaps="handled"
             contentContainerClassName="p-4 grow gap-6 flex-col flex justify-center items-center"
         >
-            <View className="mx-auto flex h-full w-full max-w-md flex-col justify-center gap-6 border border-red-500">
+            <View className="mx-auto flex h-full w-full max-w-md flex-col justify-center gap-6">
                 <View className="gap-2">
                     <Text className="text-center text-xl">{title}</Text>
                     <Text className="text-muted-foreground text-center">{description}</Text>
