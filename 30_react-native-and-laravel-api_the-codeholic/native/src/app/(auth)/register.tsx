@@ -1,4 +1,4 @@
-import type { TextInput as RNTextInput } from 'react-native';
+import type { TextInput } from 'react-native';
 
 import { useRef } from 'react';
 
@@ -13,8 +13,8 @@ import { Text } from '@/components/ui/text';
 import { AuthWrapper } from '@/components/wrappers/auth-wrapper';
 
 const Register = () => {
-    const emailInputRef = useRef<RNTextInput>(null);
-    const passwordInputRef = useRef<RNTextInput>(null);
+    const emailInputRef = useRef<TextInput>(null);
+    const passwordInputRef = useRef<TextInput>(null);
 
     const handleSubmit = () => {
         //

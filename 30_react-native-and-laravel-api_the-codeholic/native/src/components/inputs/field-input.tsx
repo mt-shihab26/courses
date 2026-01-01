@@ -1,5 +1,5 @@
 import type { ComponentPropsWithoutRef, RefObject } from 'react';
-import type { TextInput as RNTextInput } from 'react-native';
+import type { TextInput } from 'react-native';
 
 import { Input } from '@/components/ui/input';
 import { InputWrapper } from '@/components/wrappers/input-wrapper';
@@ -16,7 +16,7 @@ export const FieldInput = ({
     label: string;
     required?: boolean;
     error?: string;
-    ref?: RefObject<RNTextInput | null>;
+    ref?: RefObject<TextInput | null>;
 }) => {
     return (
         <InputWrapper label={label} htmlFor={id} required={required} error={error}>
