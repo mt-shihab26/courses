@@ -13,7 +13,6 @@ export const PasswordInput = ({
     label = 'Password',
     id,
     required,
-    showForgotPassword = false,
     error,
     ref,
     labelRight,
@@ -22,7 +21,6 @@ export const PasswordInput = ({
     id: string;
     label?: string;
     required?: boolean;
-    showForgotPassword?: boolean;
     error?: string;
     ref?: RefObject<TextInput | null>;
     labelRight?: ReactNode;
@@ -38,6 +36,7 @@ export const PasswordInput = ({
                     secureTextEntry={!isPasswordVisible}
                     returnKeyType="send"
                     className="pr-12"
+                    placeholder="********"
                     {...props}
                 />
                 <Pressable
