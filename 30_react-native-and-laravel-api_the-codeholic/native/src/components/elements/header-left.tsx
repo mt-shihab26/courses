@@ -11,9 +11,15 @@ export const HeaderLeft = () => {
         return null;
     }
 
+    const handleGoBack = () => {
+        if (router.canGoBack()) {
+            router.back();
+        }
+    };
+
     return (
         <View className="">
-            <Pressable onPress={() => router.back()} className="p-2">
+            <Pressable onPress={handleGoBack} className="p-2">
                 <Icon as={ArrowLeft} className="text-foreground size-6" />
             </Pressable>
         </View>
