@@ -8,7 +8,7 @@ import { ThemeProvider } from '@react-navigation/native';
 import { PortalHost } from '@rn-primitives/portal';
 import { Stack } from 'expo-router';
 import { ArrowLeft } from 'lucide-react-native';
-import { Pressable, View } from 'react-native';
+import { Pressable, Text, View } from 'react-native';
 
 import { NAV_THEME } from '@/lib/theme';
 
@@ -33,7 +33,7 @@ const Layout = () => {
                     headerTitle: ({ children }) => (
                         <View className="bg-primary h-8 w-8 items-center justify-center rounded-full">
                             <View className="bg-primary-foreground h-4 w-4 rounded-full" />
-                            {children}
+                            <Text>{children}</Text>
                         </View>
                     ),
                 }}
