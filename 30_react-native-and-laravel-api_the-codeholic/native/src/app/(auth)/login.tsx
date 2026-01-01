@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 
 import { ORSeparator } from '@/components/elements/or-seperator';
+import { PromptLink } from '@/components/elements/prompt-link';
 import { EmailInput } from '@/components/inputs/email-input';
 import { PasswordInput } from '@/components/inputs/password-input';
 import { SocialConnections } from '@/components/screens/auth/social-connections';
@@ -50,12 +51,7 @@ const Login = () => {
                 <Button className="w-full" onPress={handleSubmit}>
                     <Text>Continue</Text>
                 </Button>
-                <Text className="flex-1 items-center text-center text-sm">
-                    Don&apos;t have an account?{' '}
-                    <Link href="/register" className="text-sm underline underline-offset-4">
-                        Sign up
-                    </Link>
-                </Text>
+                <PromptLink message="Don't have an account?" label="Sign up" href="/register" />
                 <ORSeparator />
                 <SocialConnections />
             </View>
