@@ -1,9 +1,9 @@
 import { useRef } from 'react';
 
+import { EmailInput } from '@/components/inputs/email-input';
+import { PasswordInput } from '@/components/inputs/password-input';
 import { SocialConnections } from '@/components/screens/auth/social-connections';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
 import { Text } from '@/components/ui/text';
 import { Link } from 'expo-router';
@@ -28,34 +28,8 @@ const Login = () => {
                     Welcome back! Please sign in to continue
                 </Text>
                 <View className="gap-6">
-                    <View className="gap-1.5">
-                        <Label htmlFor="email">Email</Label>
-                        <Input
-                            id="email"
-                            placeholder="m@example.com"
-                            keyboardType="email-address"
-                            autoComplete="email"
-                            autoCapitalize="none"
-                            onSubmitEditing={passwordInputRef.current?.focus}
-                            returnKeyType="next"
-                            submitBehavior="submit"
-                        />
-                    </View>
-                    <View className="gap-1.5">
-                        <View className="flex-row items-center justify-between">
-                            <Label htmlFor="password">Password</Label>
-                            <Link href="/forgot-password">
-                                <Text className="text-sm leading-4 font-normal">Forgot your password?</Text>
-                            </Link>
-                        </View>
-                        <Input
-                            ref={passwordInputRef}
-                            id="password"
-                            secureTextEntry
-                            returnKeyType="send"
-                            onSubmitEditing={handleSubmit}
-                        />
-                    </View>
+                    <EmailInput onSubmitEditing={() => passwordInputRef.current?.focus()} />
+                    <PasswordInput ref={passwordInputRef} showForgotPassword onSubmitEditing={handleSubmit} />
                     <Button className="w-full" onPress={handleSubmit}>
                         <Text>Continue</Text>
                     </Button>
