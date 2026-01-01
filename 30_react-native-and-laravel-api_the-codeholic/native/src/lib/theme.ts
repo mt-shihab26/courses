@@ -1,5 +1,4 @@
 import { DarkTheme, DefaultTheme, type Theme } from '@react-navigation/native';
-import { useUniwind } from 'uniwind';
 
 export const THEME = {
     light: {
@@ -79,14 +78,4 @@ export const NAV_THEME: Record<'light' | 'dark', Theme> = {
             text: THEME.dark.foreground,
         },
     },
-};
-
-export const useTheme = () => {
-    const uniwind = useUniwind();
-
-    const theme = THEME[uniwind.theme];
-
-    return {
-        theme,
-    };
 };

@@ -1,14 +1,14 @@
-import { useTheme } from '@/lib/theme';
+import { useTheme } from '@react-navigation/native';
 
 import { BackPressable } from '@/components/elements/back-pressable';
 import { Tabs } from 'expo-router';
 import { HouseIcon, SettingsIcon } from 'lucide-react-native';
 
 const Layout = () => {
-    const { theme } = useTheme();
+    const { colors } = useTheme();
 
     return (
-        <Tabs screenOptions={{ tabBarActiveTintColor: theme.primary }}>
+        <Tabs screenOptions={{ tabBarActiveTintColor: colors.primary }}>
             <Tabs.Screen
                 name="index"
                 options={{
