@@ -13,8 +13,11 @@ export const AuthWrapper = ({
     children: ReactNode;
 }) => {
     return (
-        <ScrollView keyboardShouldPersistTaps="handled" contentContainerClassName="p-4 gap-6">
-            <View className="mx-auto w-full max-w-md gap-6">
+        <ScrollView
+            keyboardShouldPersistTaps="handled"
+            contentContainerClassName="p-4 gap-6 flex-1 flex-col flex justify-center items-center"
+        >
+            <View className="mx-auto flex w-full max-w-md flex-col gap-6">
                 <View className="gap-2">
                     <Text className="text-center text-xl">{title}</Text>
                     <Text className="text-muted-foreground text-center">{description}</Text>
