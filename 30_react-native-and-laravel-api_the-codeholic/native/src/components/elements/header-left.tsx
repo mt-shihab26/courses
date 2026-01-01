@@ -12,7 +12,7 @@ export const HeaderLeft = () => {
     }
 
     return (
-        <View className="pl-4">
+        <View className="">
             <Pressable onPress={() => router.back()} className="p-2">
                 <Icon as={ArrowLeft} className="text-foreground size-6" />
             </Pressable>
