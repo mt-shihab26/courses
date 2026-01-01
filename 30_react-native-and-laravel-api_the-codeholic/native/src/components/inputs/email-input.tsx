@@ -1,7 +1,7 @@
 import type { ComponentPropsWithoutRef } from 'react';
 
-import { InputWrapper } from '@/components/elements/input-wrapper';
 import { Input } from '@/components/ui/input';
+import { InputWrapper } from '@/components/wrappers/input-wrapper';
 
 export const EmailInput = ({
     label = 'Email',

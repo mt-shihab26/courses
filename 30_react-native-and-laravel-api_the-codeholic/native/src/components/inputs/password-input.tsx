@@ -3,9 +3,9 @@ import type { TextInput } from 'react-native';
 
 import { useState } from 'react';
 
-import { InputWrapper } from '@/components/elements/input-wrapper';
 import { Icon } from '@/components/ui/icon';
 import { Input } from '@/components/ui/input';
+import { InputWrapper } from '@/components/wrappers/input-wrapper';
 import { Eye, EyeOff } from 'lucide-react-native';
 import { Pressable, View } from 'react-native';
 
