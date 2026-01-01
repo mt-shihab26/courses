@@ -5,7 +5,8 @@
     "scripts": {
         "dev": "expo start -c",
         "format": "prettier --write ./",
-        "lint": "expo lint"
+        "lint": "expo lint",
+        "shadcn": "bunx --bun @react-native-reusables/cli@latest"
     },
     "dependencies": {
         "@react-navigation/native": "^7.1.26",
