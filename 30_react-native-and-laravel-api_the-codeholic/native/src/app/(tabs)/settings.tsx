@@ -3,11 +3,9 @@ import { View } from 'react-native';
 
 const Index = () => {
     return (
-        <>
-            <View className="flex-1 items-center justify-center">
-                <ThemeSwitcher />
-            </View>
-        </>
+        <View className="flex-1 items-center justify-center">
+            <ThemeSwitcher />
+        </View>
     );
 };
 

@@ -16,7 +16,9 @@ const Layout = () => {
 
     return (
         <ThemeProvider value={NAV_THEME[theme ?? 'light']}>
-            <Stack />
+            <Stack>
+                <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+            </Stack>
             <PortalHost />
         </ThemeProvider>
     );
