@@ -3,7 +3,6 @@
   "configVersion": 1,
   "workspaces": {
     "": {
-      "name": "minimal",
       "dependencies": {
         "@react-navigation/native": "^7.0.0",
         "@rn-primitives/accordion": "^1.2.0",
