@@ -1,9 +1,13 @@
-import { Text, View } from 'react-native';
+import { Button } from '@/components/ui/button';
+import { Text } from '@/components/ui/text';
+import { View } from 'react-native';
 
 const Index = () => {
     return (
         <View className="flex-1 items-center justify-center">
-            <Text className="text-red-500">Edit app/index.tsx to edit this screen.</Text>
+            <Button variant="destructive">
+                <Text>Button</Text>
+            </Button>
         </View>
     );
 };
