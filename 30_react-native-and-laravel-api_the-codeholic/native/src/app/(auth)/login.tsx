@@ -22,6 +22,7 @@ const Login = () => {
     return (
         <AuthWrapper title="Sign in to your app" description="Welcome back! Please sign in to continue">
             <EmailInput
+                id="email"
                 required={true}
                 value=""
                 error=""
@@ -29,6 +30,7 @@ const Login = () => {
                 onSubmitEditing={() => passwordInputRef.current?.focus()}
             />
             <PasswordInput
+                id="password"
                 ref={passwordInputRef}
                 required={true}
                 error=""

@@ -12,17 +12,15 @@ import { Pressable, View } from 'react-native';
 export const PasswordInput = ({
     label = 'Password',
     id,
-    name,
     required,
     showForgotPassword = false,
     error,
     ref,
     labelRight,
     ...props
-}: Omit<ComponentPropsWithoutRef<typeof Input>, 'id'> & {
+}: Omit<ComponentPropsWithoutRef<typeof Input>, 'id' | 'name'> & {
     id: string;
     label?: string;
-    name?: string;
     required?: boolean;
     showForgotPassword?: boolean;
     error?: string;
