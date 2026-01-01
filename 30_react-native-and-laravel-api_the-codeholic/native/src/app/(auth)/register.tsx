@@ -31,7 +31,7 @@ const Register = () => {
                 value=""
                 error=""
                 onChange={() => {}}
-                onSubmitEditing={() => emailInputRef.current?.focus()}
+                onSubmitEditing={emailInputRef.current?.focus}
                 returnKeyType="next"
             />
             <EmailInput
@@ -41,7 +41,7 @@ const Register = () => {
                 value=""
                 error=""
                 onChange={() => {}}
-                onSubmitEditing={() => passwordInputRef.current?.focus()}
+                onSubmitEditing={passwordInputRef.current?.focus}
             />
             <PasswordInput
                 id="password"

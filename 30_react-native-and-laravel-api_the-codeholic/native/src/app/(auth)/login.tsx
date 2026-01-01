@@ -27,7 +27,7 @@ const Login = () => {
                 value=""
                 error=""
                 onChange={() => {}}
-                onSubmitEditing={() => passwordInputRef.current?.focus()}
+                onSubmitEditing={passwordInputRef.current?.focus}
             />
             <PasswordInput
                 id="password"
