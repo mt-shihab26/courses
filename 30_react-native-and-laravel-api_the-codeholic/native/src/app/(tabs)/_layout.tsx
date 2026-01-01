@@ -1,6 +1,5 @@
 import { useTheme } from '@react-navigation/native';
 
-import { BackButton } from '@/components/elements/back-button';
 import { HeaderLeft } from '@/components/elements/header-left';
 import { HeaderTitle } from '@/components/elements/header-title';
 import { Tabs } from 'expo-router';
@@ -15,7 +14,6 @@ const Layout = () => {
                 tabBarActiveTintColor: colors.primary,
                 headerShown: true,
                 headerShadowVisible: true,
-                headerLeft: HeaderLeft,
                 headerTitle: HeaderTitle,
             }}
         >
@@ -31,7 +29,7 @@ const Layout = () => {
                 options={{
                     title: 'Settings',
                     tabBarIcon: ({ size, color }) => <SettingsIcon size={size} color={color} />,
-                    headerLeft: BackButton,
+                    headerLeft: HeaderLeft,
                 }}
             />
         </Tabs>

@@ -1,4 +1,3 @@
-import { HeaderLeft } from '@/components/elements/header-left';
 import { HeaderTitle } from '@/components/elements/header-title';
 import { Stack } from 'expo-router';
 
@@ -8,7 +7,6 @@ const Layout = () => {
             screenOptions={{
                 headerShown: true,
                 headerShadowVisible: true,
-                headerLeft: HeaderLeft,
                 headerTitle: HeaderTitle,
             }}
         >
