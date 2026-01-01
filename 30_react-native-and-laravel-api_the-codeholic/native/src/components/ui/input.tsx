@@ -1,7 +1,10 @@
 import { cn } from '@/lib/utils';
-import { Platform, TextInput, type TextInputProps } from 'react-native';
 
-function Input({ className, ...props }: TextInputProps & React.RefAttributes<TextInput>) {
+import { Platform, TextInput, useColorScheme, type TextInputProps } from 'react-native';
+
+function Input({ className, placeholderTextColor, ...props }: TextInputProps & React.RefAttributes<TextInput>) {
+    const colorScheme = useColorScheme();
+
     return (
         <TextInput
             className={cn(
@@ -17,10 +20,13 @@ function Input({ className, ...props }: TextInputProps & React.RefAttributes<Tex
                         'focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]',
                         'aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive',
                     ),
-                    native: 'placeholder:text-muted-foreground/50',
                 }),
                 className,
             )}
+            placeholderTextColor={
+                placeholderTextColor ??
+                (Platform.OS === 'web' ? undefined : colorScheme === 'dark' ? '#8E8E8E' : '#B5B5B5')
+            }
             {...props}
         />
     );
