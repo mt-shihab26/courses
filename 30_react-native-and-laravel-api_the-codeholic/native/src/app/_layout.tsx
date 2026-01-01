@@ -1,18 +1,18 @@
-import '@/global.css';
+import './../../global.css';
 
-import { NAV_THEME } from '@/lib/theme';
+import { useUniwind } from 'uniwind';
+
 import { ThemeProvider } from '@react-navigation/native';
 import { PortalHost } from '@rn-primitives/portal';
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
-import { useUniwind } from 'uniwind';
 
-export {
-    // Catch any errors thrown by the Layout component.
-    ErrorBoundary,
-} from 'expo-router';
+import { NAV_THEME } from '@/lib/theme';
 
-export default function RootLayout() {
+// Catch any errors thrown by the Layout component.
+export { ErrorBoundary } from 'expo-router';
+
+const Layout = () => {
     const { theme } = useUniwind();
 
     return (
@@ -22,4 +22,6 @@ export default function RootLayout() {
             <PortalHost />
         </ThemeProvider>
     );
-}
+};
+
+export default Layout;
