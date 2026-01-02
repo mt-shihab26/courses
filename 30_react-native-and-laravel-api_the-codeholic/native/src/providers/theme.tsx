@@ -1,14 +1,36 @@
+import type { TScheme, TTheme } from '@/types/utils';
+import type { ReactNode } from 'react';
+
 import { useStore } from '@/hooks/use-store';
-import { NAV_THEME } from '@/lib/theme';
-import { TTheme } from '@/types/utils';
+import { createContext, useContext, useEffect } from 'react';
+import { useUniwind } from 'uniwind';
+
 import { ThemeProvider as NavigationThemeProvider } from '@react-navigation/native';
-import { type ReactNode, useEffect } from 'react';
 import { ActivityIndicator, View } from 'react-native';
-import { Uniwind, useUniwind } from 'uniwind';
+import { Uniwind } from 'uniwind';
+
+import { NAV_THEME } from '@/lib/theme';
 
 const THEME_KEY = 'app-theme-preference';
 
+type TThemeContext = {
+    loading: boolean;
+    scheme: TScheme;
+    theme: TTheme;
+    setTheme: (theme: TTheme) => Promise<void>;
+};
+
+const ThemeContext = createContext<TThemeContext | null>(null);
+
 export const useTheme = () => {
+    const context = useContext(ThemeContext);
+    if (!context) {
+        throw new Error('useTheme must be used within ThemeProvider');
+    }
+    return context;
+};
+
+export const ThemeProvider = ({ children }: { children: ReactNode }) => {
     const [loading, storedTheme, setStoredTheme] = useStore<TTheme>(THEME_KEY);
 
     const { theme: scheme, hasAdaptiveThemes } = useUniwind();
@@ -25,16 +47,12 @@ export const useTheme = () => {
         await setStoredTheme(theme);
     };
 
-    return {
+    const value: TThemeContext = {
         loading,
         scheme,
         theme,
         setTheme,
     };
-};
-
-export const ThemeProvider = ({ children }: { children: ReactNode }) => {
-    const { loading, scheme } = useTheme();
 
     if (loading) {
         return (
@@ -44,5 +62,9 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
         );
     }
 
-    return <NavigationThemeProvider value={NAV_THEME[scheme || 'light']}>{children}</NavigationThemeProvider>;
+    return (
+        <ThemeContext.Provider value={value}>
+            <NavigationThemeProvider value={NAV_THEME[scheme || 'light']}>{children}</NavigationThemeProvider>
+        </ThemeContext.Provider>
+    );
 };
