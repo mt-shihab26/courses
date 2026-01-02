@@ -9,9 +9,8 @@ import { ThemeProvider as NavigationThemeProvider } from '@react-navigation/nati
 import { ActivityIndicator, View } from 'react-native';
 import { Uniwind } from 'uniwind';
 
+import { THEME_KEY } from '@/lib/keys';
 import { NAV_THEME } from '@/lib/theme';
-
-const THEME_KEY = 'app-theme-preference';
 
 type TThemeContext = {
     loading: boolean;
@@ -21,14 +20,6 @@ type TThemeContext = {
 };
 
 const ThemeContext = createContext<TThemeContext | null>(null);
-
-export const useTheme = () => {
-    const context = useContext(ThemeContext);
-    if (!context) {
-        throw new Error('useTheme must be used within ThemeProvider');
-    }
-    return context;
-};
 
 export const ThemeProvider = ({ children }: { children: ReactNode }) => {
     const [loading, storedTheme, setStoredTheme] = useStore<TTheme>(THEME_KEY);
@@ -47,15 +38,8 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
         await setStoredTheme(theme);
     };
 
-    const value: TThemeContext = {
-        loading,
-        scheme,
-        theme,
-        setTheme,
-    };
-
     return (
-        <ThemeContext.Provider value={value}>
+        <ThemeContext.Provider value={{ loading, scheme, theme, setTheme }}>
             <NavigationThemeProvider value={NAV_THEME[scheme || 'light']}>
                 {loading && (
                     <View className="absolute top-15 right-0 left-0 z-999 items-center">
@@ -66,4 +50,12 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
             </NavigationThemeProvider>
         </ThemeContext.Provider>
     );
+};
+
+export const useTheme = (): TThemeContext => {
+    const context = useContext(ThemeContext);
+    if (!context) {
+        throw new Error('useTheme must be used within ThemeProvider');
+    }
+    return context;
 };
