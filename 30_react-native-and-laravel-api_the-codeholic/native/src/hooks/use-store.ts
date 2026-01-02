@@ -1,5 +1,5 @@
 import { deleteItemAsync, getItemAsync, setItemAsync } from 'expo-secure-store';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import { Platform } from 'react-native';
 
@@ -48,10 +48,15 @@ export const useStore = (key: string) => {
         init();
     }, [key]);
 
-    const set = async (value: string) => {
-        setValue(value);
-        await store.get(value);
-    };
+    const set = useCallback(
+        async (value: string) => {
+            setLoading(true);
+            setValue(value);
+            await store.set(key, value);
+            setLoading(false);
+        },
+        [key],
+    );
 
-    return [loading, value, { set }];
+    return { loading, value, set };
 };
