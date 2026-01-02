@@ -35,11 +35,12 @@ export const store = {
 };
 
 export const useStore = (key: string) => {
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const [value, setValue] = useState<string | null>(null);
 
     useEffect(() => {
         const init = async () => {
+            setLoading(true);
             const value = await store.get(key);
             setValue(value);
             setLoading(false);
