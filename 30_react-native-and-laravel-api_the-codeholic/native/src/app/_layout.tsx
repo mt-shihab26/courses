@@ -1,7 +1,5 @@
 import './../../global.css';
 
-import { useUniwind } from 'uniwind';
-
 import { ThemeProvider } from '@/providers/theme';
 import { PortalHost } from '@rn-primitives/portal';
 import { Stack } from 'expo-router';
@@ -10,8 +8,6 @@ import { Stack } from 'expo-router';
 export { ErrorBoundary } from 'expo-router';
 
 const Layout = () => {
-    const { theme } = useUniwind();
-
     return (
         <ThemeProvider>
             <Stack>
