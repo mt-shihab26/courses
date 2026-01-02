@@ -1,4 +1,5 @@
 import { deleteItemAsync, getItemAsync, setItemAsync } from 'expo-secure-store';
+import { useEffect, useState } from 'react';
 
 import { Platform } from 'react-native';
 
@@ -31,4 +32,26 @@ export const store = {
             console.error('Failed to remove from store:', error);
         }
     },
+};
+
+export const useStore = (key: string) => {
+    const [loading, setLoading] = useState(true);
+    const [value, setValue] = useState<string | null>(null);
+
+    useEffect(() => {
+        const init = async () => {
+            const value = await store.get(key);
+            setValue(value);
+            setLoading(false);
+        };
+
+        init();
+    }, [key]);
+
+    const set = async (value: string) => {
+        setValue(value);
+        await store.get(value);
+    };
+
+    return [loading, value, { set }];
 };

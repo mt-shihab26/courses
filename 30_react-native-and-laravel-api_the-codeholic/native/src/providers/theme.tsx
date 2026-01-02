@@ -1,4 +1,4 @@
-import { store } from '@/lib/store';
+import { store } from '@/hooks/use-store';
 import { NAV_THEME } from '@/lib/theme';
 import { TTheme } from '@/types/utils';
 import { ThemeProvider as NavigationThemeProvider } from '@react-navigation/native';
