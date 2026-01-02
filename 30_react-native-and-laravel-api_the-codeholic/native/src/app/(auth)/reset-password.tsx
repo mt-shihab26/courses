@@ -16,10 +16,7 @@ const ResetPassword = () => {
     };
 
     return (
-        <AuthWrapper
-            title="Reset password"
-            description="Enter the code sent to your email and set a new password"
-        >
+        <AuthWrapper title="Reset password" description="Enter the code sent to your email and set a new password">
             <PasswordInput
                 id="password"
                 label="New password"
