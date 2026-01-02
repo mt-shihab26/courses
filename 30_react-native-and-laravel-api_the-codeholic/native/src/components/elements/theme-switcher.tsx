@@ -2,6 +2,7 @@ import type { TTheme } from '@/types/utils';
 
 import { cn } from '@/lib/utils';
 import { useTheme } from '@/providers/theme';
+
 import { Pressable, Text, View } from 'react-native';
 
 const themes: { name: TTheme; label: string; icon: string }[] = [

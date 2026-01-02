@@ -1,4 +1,4 @@
-import { store } from '@/hooks/use-store';
+import { store, useStore } from '@/hooks/use-store';
 import { NAV_THEME } from '@/lib/theme';
 import { TTheme } from '@/types/utils';
 import { ThemeProvider as NavigationThemeProvider } from '@react-navigation/native';
@@ -8,6 +8,19 @@ import { Uniwind, useUniwind } from 'uniwind';
 const THEME_KEY = 'app-theme-preference';
 
 export const useTheme = () => {
+    const [loading, storedTheme, setStoredTheme] = useStore(THEME_KEY);
+
+    useEffect(() => {
+        const init = async () => {
+            const savedTheme = (await store.get(THEME_KEY)) as TTheme | null;
+            if (savedTheme) {
+                Uniwind.setTheme(savedTheme);
+            }
+        };
+
+        init();
+    }, []);
+
     const { theme: scheme, hasAdaptiveThemes } = useUniwind();
 
     const theme: TTheme = hasAdaptiveThemes ? 'system' : scheme;
@@ -25,18 +38,7 @@ export const useTheme = () => {
 };
 
 export const ThemeProvider = ({ children }: { children: ReactNode }) => {
-    const { scheme, setTheme } = useTheme();
-
-    useEffect(() => {
-        const init = async () => {
-            const savedTheme = (await store.get(THEME_KEY)) as TTheme | null;
-            if (savedTheme) {
-                setTheme(savedTheme);
-            }
-        };
-
-        init();
-    }, []);
+    const { scheme } = useTheme();
 
     return <NavigationThemeProvider value={NAV_THEME[scheme || 'light']}>{children}</NavigationThemeProvider>;
 };
