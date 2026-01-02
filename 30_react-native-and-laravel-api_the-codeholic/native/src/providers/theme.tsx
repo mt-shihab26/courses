@@ -54,17 +54,16 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
         setTheme,
     };
 
-    if (loading) {
-        return (
-            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                <ActivityIndicator size="large" />
-            </View>
-        );
-    }
-
     return (
         <ThemeContext.Provider value={value}>
-            <NavigationThemeProvider value={NAV_THEME[scheme || 'light']}>{children}</NavigationThemeProvider>
+            <NavigationThemeProvider value={NAV_THEME[scheme || 'light']}>
+                {loading && (
+                    <View className="absolute top-15 right-0 left-0 z-999 items-center">
+                        <ActivityIndicator size="large" />
+                    </View>
+                )}
+                {children}
+            </NavigationThemeProvider>
         </ThemeContext.Provider>
     );
 };
