@@ -1,11 +1,11 @@
 {
     "expo": {
-        "name": "minimal",
-        "slug": "minimal",
+        "name": "imaginary",
+        "slug": "imaginary",
         "version": "1.0.0",
         "orientation": "portrait",
         "icon": "./assets/images/icon.png",
-        "scheme": "minimal",
+        "scheme": "imaginary",
         "userInterfaceStyle": "automatic",
         "newArchEnabled": true,
         "splash": {
