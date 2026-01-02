@@ -1,8 +1,7 @@
 import { cn } from '@/lib/utils';
-import { useUniwind } from 'uniwind';
+import { Uniwind, useUniwind } from 'uniwind';
 
 import { Pressable, Text, View } from 'react-native';
-import { Uniwind } from 'uniwind';
 
 type TTheme = 'light' | 'dark' | 'system';
 

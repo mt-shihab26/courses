@@ -5,7 +5,7 @@
     "scripts": {
         "dev": "expo start -c",
         "format": "prettier --write ./",
-        "lint": "tsc --noEmit && expo lint",
+        "lint": "tsc --noEmit && expo lint --fix",
         "clean": "rm -rf .expo node_modules expo-env.d.ts uniwind-types.d.ts",
         "shadcn": "bunx --bun @react-native-reusables/cli@latest"
     },
