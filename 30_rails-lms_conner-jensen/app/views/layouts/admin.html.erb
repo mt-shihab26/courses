@@ -2,13 +2,13 @@
   <div class="min-h-screen flex flex-col">
     <header class="bg-white border-b border-purple-200 sticky top-0 z-10">
       <div class="container mx-auto px-6 py-4">
-        <div class="flex items-center justify-between">
+        <div class="flex items-center space-x-8">
           <div class="flex items-center space-x-2 text-lg font-semibold">
             <%= link_to "Academix", "/", class: "text-purple-700 hover:text-purple-900 transition" %>
             <span class="text-purple-400">/</span>
             <%= link_to "Admin", "/admin", class: "text-purple-900 hover:text-purple-700 transition" %>
           </div>
-          <div class="flex items-center space-x-8">
+          <div class="flex items-center justify-between space-x-8 w-full">
             <nav class="flex items-center space-x-1">
               <% links = [
                 { "label" => "Overview", "href" => "/admin" },
@@ -16,13 +16,11 @@
                 { "label" => "Courses", "href" => "/courses" }
               ] %>
               <% links.each do |link| %>
-                <% is_active = request.path == link["href"] %>
-                <%= link_to link["label"], link["href"],
-                  class: "px-4 py-2 rounded-lg text-sm font-medium transition #{is_active ? 'bg-purple-600 text-white' : 'text-purple-700 hover:bg-purple-100 hover:text-purple-900'}" %>
+                <%= link_to link["label"], link["href"], class: "px-4 py-2 hover:underline rounded-lg text-sm font-medium transition #{request.path == link["href"] ? 'text-purple-800' : ''}" %>
               <% end %>
             </nav>
             <div class="flex items-center space-x-3">
-              <div class="w-10 h-10 bg-linear-to-br from-purple-500 to-purple-700 rounded-full flex items-center justify-center text-white font-semibold text-sm shadow-md">
+              <div class="w-10 h-10 bg-gray-50 rounded-full flex items-center border border-gray-100 justify-center font-semibold text-sm">
                 SM
               </div>
             </div>
@@ -37,14 +35,18 @@
     </main>
     <footer class="bg-white border-t border-purple-200 mt-auto">
       <div class="container mx-auto px-6 py-6">
-        <div class="flex items-center justify-between text-sm text-purple-600">
+        <div class="flex items-center justify-between text-sm">
           <div>
             <span>&copy; <%= Time.current.year %> Academix. All rights reserved.</span>
           </div>
           <div class="flex items-center space-x-6">
-            <%= link_to "Documentation", "#", class: "hover:text-purple-900 transition" %>
-            <%= link_to "Support", "#", class: "hover:text-purple-900 transition" %>
-            <%= link_to "Settings", "#", class: "hover:text-purple-900 transition" %>
+            <% links = [
+              { "label" => "Documentation", "href" => "#" },
+              { "label" => "Support", "href" => "#" },
+            ] %>
+            <% links.each do |link| %>
+              <%= link_to link["label"], link["href"], class: "hover:text-purple-600 transition" %>
+            <% end %>
           </div>
         </div>
       </div>
