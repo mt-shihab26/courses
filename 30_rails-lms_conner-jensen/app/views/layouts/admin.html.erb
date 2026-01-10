@@ -1,21 +1,25 @@
 <% content_for :content do %>
   <div class="p-5 space-y-2 flex flex-col container mx-auto">
-    <header class="flex space-x-5">
-      <div class="flex text-xl font-bold">
+    <header class="flex space-x-5 items-center">
+      <div class="flex text-xl font-bold items-center">
         <%= link_to "Academix", "/", class: "hover:underline" %>
         <span>/</span>
         <%= link_to "Admin", "/admin", class: "hover:underline" %>
       </div> 
-      <div>
-        <nav class="flex space-x-4">
-          <% links = [{
-            "label" => "Overview", "href" => "/admin"}
-            "label" => "Students", "href" => "/students"}
+      <div class="flex space-x-4 w-full justify-between items-center">
+        <nav class="flex space-x-4  items-center">
+          <% links = [
+            { "label" => "Overview", "href" => "/admin" },
+            { "label" => "Students", "href" => "/students" },
+            { "label" => "Courses", "href" => "/courses" }
           ] %>
           <% links.each do |link| %>
             <%= link_to link["label"], link["href"], class: "underline" %>
           <% end %>
         </nav> 
+        <div>
+          <div>SM</div> 
+        </div>
       </div>
     </header>
     <main>
