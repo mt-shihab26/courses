@@ -1,0 +1,31 @@
+<% content_for :content do %>
+  <div class="p-5 space-y-2 flex flex-col container mx-auto">
+    <header class="flex space-x-5">
+      <div class="flex text-xl font-bold">
+        <%= link_to "Academix", "/", class: "hover:underline" %>
+        <span>/</span>
+        <%= link_to "Admin", "/admin", class: "hover:underline" %>
+      </div> 
+      <div>
+        <nav class="flex space-x-4">
+          <% links = [{
+            "label" => "Overview", "href" => "/admin"}
+            "label" => "Students", "href" => "/students"}
+          ] %>
+          <% links.each do |link| %>
+            <%= link_to link["label"], link["href"], class: "underline" %>
+          <% end %>
+        </nav> 
+      </div>
+    </header>
+    <main>
+      <%= yield %>
+    </main>
+    <footer>
+      footer
+    </footer>
+  </div> 
+<% end %>
+
+<%= render template: "layouts/application" %>
+
