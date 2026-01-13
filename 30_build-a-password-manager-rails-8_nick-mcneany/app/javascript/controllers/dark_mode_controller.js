@@ -1,8 +1,10 @@
 import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
+    static KEY = "dark-mode";
+
     connect() {
-        const darkMode = localStorage.getItem("dark-mode");
+        const darkMode = localStorage.getItem(this.KEY);
         if (darkMode === "enabled") {
             document.documentElement.classList.add("dark");
         } else if (darkMode === null) {
@@ -17,10 +19,10 @@ export default class extends Controller {
 
         if (html.classList.contains("dark")) {
             html.classList.remove("dark");
-            localStorage.setItem("dark-mode", "disabled");
+            localStorage.setItem(this.KEY, "disabled");
         } else {
             html.classList.add("dark");
-            localStorage.setItem("dark-mode", "enabled");
+            localStorage.setItem(this.KEY, "enabled");
         }
     }
 }
