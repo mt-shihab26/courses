@@ -1,12 +1,12 @@
-<nav class="border-b border-slate-200 bg-white">
+<nav class="border-b border-border bg-card">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <div class="flex h-16 items-center justify-between">
       <div class="flex items-center space-x-8">
         <div class="flex items-center">
-          <svg class="h-8 w-8 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg class="h-8 w-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
           </svg>
-          <span class="ml-2 text-xl font-semibold text-slate-900">Safe Pass</span>
+          <span class="ml-2 text-xl font-semibold text-foreground">Safe Pass</span>
         </div>
         <div class="hidden md:flex md:space-x-1">
           <% nav_links = [
@@ -15,11 +15,14 @@
             { label: "About", path: about_path }
           ] %>
           <% nav_links.each do |link| %>
-            <%= link_to link[:label], link[:path], class: "rounded-lg px-3 py-2 text-sm font-medium #{current_page?(link[:path]) ? 'text-slate-900 bg-slate-100' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'}" %>
+            <%= link_to link[:label], link[:path], class: "rounded-lg px-3 py-2 text-sm font-medium #{current_page?(link[:path]) ? 'text-foreground bg-accent' : 'text-muted-foreground hover:bg-accent hover:text-accent-foreground'}" %>
           <% end %>
         </div>
       </div>
-      <%= render "layouts/user_dropdown" %>
+      <div class="flex items-center space-x-2">
+        <%= render "layouts/dark_mode_toggle" %>
+        <%= render "layouts/user_dropdown" %>
+      </div>
     </div>
   </div>
 </nav>

@@ -23,7 +23,7 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
+  <body class="bg-background text-foreground" data-controller="dark-mode">
     <% if content_for?(:body) %>
       <%= yield :body %>
     <% else %>
