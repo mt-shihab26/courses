@@ -17,7 +17,8 @@ export default class extends Controller {
     }
 
     dismiss(event) {
-        const element = event.currentTarget;
+        const button = event.currentTarget;
+        const element = button.closest('[data-toast-target="message"]');
 
         element.classList.remove("toast-enter");
         element.classList.add("toast-exit");
