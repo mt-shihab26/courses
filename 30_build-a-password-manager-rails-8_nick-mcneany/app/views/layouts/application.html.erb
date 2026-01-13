@@ -34,6 +34,7 @@
   </head>
 
   <body class="bg-background text-foreground" data-controller="dark-mode">
+    <%= render "layouts/flash_messages" %>
     <% if content_for?(:body) %>
       <%= yield :body %>
     <% else %>
