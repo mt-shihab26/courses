@@ -24,6 +24,10 @@
   </head>
 
   <body>
+    <% if content_for?(:body) %>
+      <%= yield :body %>
+    <% else %>
       <%= yield %>
+    <% end %>
   </body>
 </html>
