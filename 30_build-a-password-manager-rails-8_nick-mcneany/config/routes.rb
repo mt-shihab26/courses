@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  resource :session
+  resource :session do
+    get :register_new, on: :collection
+    post :register_create, on: :collection
+  end
   resources :passwords, param: :token
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
