@@ -9,9 +9,14 @@
           <span class="ml-2 text-xl font-semibold text-slate-900">Safe Pass</span>
         </div>
         <div class="hidden md:flex md:space-x-1">
-          <%= link_to "Dashboard", dashboard_path, class: "rounded-lg px-3 py-2 text-sm font-medium text-slate-900 hover:bg-slate-100" %>
-          <%= link_to "Passwords", "#", class: "rounded-lg px-3 py-2 text-sm font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900" %>
-          <%= link_to "About", about_path, class: "rounded-lg px-3 py-2 text-sm font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900" %>
+          <% nav_links = [
+            { label: "Dashboard", path: dashboard_path },
+            { label: "Passwords", path: "#" },
+            { label: "About", path: about_path }
+          ] %>
+          <% nav_links.each do |link| %>
+            <%= link_to link[:label], link[:path], class: "rounded-lg px-3 py-2 text-sm font-medium #{current_page?(link[:path]) ? 'text-slate-900 bg-slate-100' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'}" %>
+          <% end %>
         </div>
       </div>
       <%= render "layouts/user_dropdown" %>
