@@ -1,9 +1,0 @@
-class DashboardController < ApplicationController
-  layout "dashboard"
-
-  def index
-  end
-
-  def about
-  end
-end
