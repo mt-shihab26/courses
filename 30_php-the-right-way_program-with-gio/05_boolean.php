@@ -14,3 +14,5 @@ var_dump(0.0 == false, -0.0 == false); // false
 var_dump('' == false); // false
 var_dump([] == false); // false
 var_dump(null == false); // false
+
+var_dump(is_bool($completed));
