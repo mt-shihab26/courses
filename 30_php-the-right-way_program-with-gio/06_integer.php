@@ -14,5 +14,17 @@ var_dump(PHP_INT_MAX + 1);
 /* var_dump((integer) PHP_INT_MAX + 1); */
 var_dump((int) PHP_INT_MAX + 1);
 
-echo (string) (int) true."\n";
-echo (string) (int) false."\n";
+echo (int) true."\n";
+echo (int) false."\n";
+echo (int) 5.98."\n";
+echo (int) '5.98'."\n";
+echo (int) '87abcd'."\n";
+echo (int) 'abcd'."\n";
+echo (int) null."\n";
+
+$age = 23;
+
+var_dump(is_int($age));
+/* var_dump(is_integer($age)); */
+
+echo 200_000 ."\n";
