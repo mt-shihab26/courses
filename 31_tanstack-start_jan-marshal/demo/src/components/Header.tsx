@@ -2,21 +2,21 @@ import { Link } from "@tanstack/react-router";
 import BetterAuthHeader from "../integrations/better-auth/header-user.tsx";
 import ThemeToggle from "./ThemeToggle";
 
-export default function Header() {
+export function Header() {
     return (
-        <header className="sticky top-0 z-50 border-b border-[var(--line)] bg-[var(--header-bg)] px-4 backdrop-blur-lg">
+        <header className="sticky top-0 z-50 border-b border-(--line) bg-(--header-bg) px-4 backdrop-blur-lg">
             <nav className="page-wrap flex flex-wrap items-center gap-x-3 gap-y-2 py-3 sm:py-4">
-                <h2 className="m-0 flex-shrink-0 text-base font-semibold tracking-tight">
+                <h2 className="m-0 shrink-0 text-base font-semibold tracking-tight">
                     <Link
                         to="/"
-                        className="inline-flex items-center gap-2 rounded-full border border-[var(--chip-line)] bg-[var(--chip-bg)] px-3 py-1.5 text-sm text-[var(--sea-ink)] no-underline shadow-[0_8px_24px_rgba(30,90,72,0.08)] sm:px-4 sm:py-2"
+                        className="inline-flex items-center gap-2 rounded-full border border-(--chip-line) bg-(--chip-bg) px-3 py-1.5 text-sm text-(--sea-ink) no-underline shadow-[0_8px_24px_rgba(30,90,72,0.08)] sm:px-4 sm:py-2"
                     >
                         <span className="h-2 w-2 rounded-full bg-[linear-gradient(90deg,#56c6be,#7ed3bf)]" />
                         TanStack Start
                     </Link>
                 </h2>
 
-                <div className="order-3 flex w-full flex-wrap items-center gap-x-4 gap-y-1 pb-1 text-sm font-semibold sm:order-none sm:w-auto sm:flex-nowrap sm:pb-0">
+                <div className="order-3 flex w-full flex-wrap items-center gap-x-4 gap-y-1 pb-1 text-sm font-semibold sm:order-0 sm:w-auto sm:flex-nowrap sm:pb-0">
                     <Link
                         to="/"
                         className="nav-link"
@@ -43,10 +43,10 @@ export default function Header() {
                         <summary className="nav-link list-none cursor-pointer">
                             Demos
                         </summary>
-                        <div className="mt-2 min-w-56 rounded-xl border border-[var(--line)] bg-[var(--header-bg)] p-2 shadow-lg sm:absolute sm:right-0">
+                        <div className="mt-2 min-w-56 rounded-xl border border-(--line) bg-(--header-bg) p-2 shadow-lg sm:absolute sm:right-0">
                             <a
                                 href="/demo/better-auth"
-                                className="block rounded-lg px-3 py-2 text-sm text-[var(--sea-ink-soft)] no-underline transition hover:bg-[var(--link-bg-hover)] hover:text-[var(--sea-ink)]"
+                                className="block rounded-lg px-3 py-2 text-sm text-(--sea-ink-soft) no-underline transition hover:bg-[var(--link-bg-hover)] hover:text-[var(--sea-ink)]"
                             >
                                 Better Auth
                             </a>
