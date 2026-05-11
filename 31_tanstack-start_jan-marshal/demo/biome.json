@@ -8,6 +8,8 @@
     "files": {
         "ignoreUnknown": false,
         "includes": [
+            "**/*",
+            "!bun.lock",
             "**/src/**/*",
             "**/.vscode/**/*",
             "**/index.html",
@@ -21,7 +23,13 @@
         "indentStyle": "space",
         "indentWidth": 4
     },
-    "assist": { "actions": { "source": { "organizeImports": "on" } } },
+    "assist": {
+        "actions": {
+            "source": {
+                "organizeImports": "on"
+            }
+        }
+    },
     "linter": {
         "enabled": true,
         "rules": {
