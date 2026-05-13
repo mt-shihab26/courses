@@ -1,8 +1,8 @@
 import { Link } from "@tanstack/react-router";
-import BetterAuthHeader from "../integrations/better-auth/header-user.tsx";
-import ThemeToggle from "./ThemeToggle";
+import { ThemeToggle } from "./ThemeToggle";
+import { BetterAuthHeader } from "#/integrations/better-auth/header-user";
 
-export function Header() {
+export const Header = () => {
     return (
         <header className="sticky top-0 z-50 border-b border-(--line) bg-(--header-bg) px-4 backdrop-blur-lg">
             <nav className="page-wrap flex flex-wrap items-center gap-x-3 gap-y-2 py-3 sm:py-4">
@@ -106,4 +106,4 @@ export function Header() {
             </nav>
         </header>
     );
-}
+};

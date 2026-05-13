@@ -1,7 +1,8 @@
 import { authClient } from "#/lib/auth-client";
+
 import { Link } from "@tanstack/react-router";
 
-export default function BetterAuthHeader() {
+export function BetterAuthHeader() {
     const { data: session, isPending } = authClient.useSession();
 
     if (isPending) {
