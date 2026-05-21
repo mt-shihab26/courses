@@ -3,7 +3,7 @@
     "mode": "file-router",
     "typescript": true,
     "packageManager": "bun",
-    "includeExamples": false,
+    "includeExamples": true,
     "tailwind": true,
     "addOnOptions": {
         "drizzle": {
@@ -19,9 +19,9 @@
     "chosenAddOns": [
         "eslint",
         "nitro",
-        "shadcn",
         "compiler",
-        "better-auth",
-        "drizzle"
+        "drizzle",
+        "shadcn",
+        "better-auth"
     ]
 }

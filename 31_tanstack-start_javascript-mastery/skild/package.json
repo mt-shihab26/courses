@@ -12,7 +12,6 @@
         "test": "vitest run",
         "lint": "tsc && eslint --fix",
         "format": "prettier --write .",
-        "check": "prettier --check .",
         "db:generate": "drizzle-kit generate",
         "db:migrate": "drizzle-kit migrate",
         "db:push": "drizzle-kit push",
@@ -62,12 +61,5 @@
         "typescript": "^6.0.2",
         "vite": "^8.0.0",
         "vitest": "^4.1.5"
-    },
-    "pnpm": {
-        "onlyBuiltDependencies": [
-            "esbuild",
-            "lightningcss",
-            "better-sqlite3"
-        ]
     }
 }
