@@ -19,6 +19,11 @@ export const Route = createRootRoute({
             {
                 title: 'Skild - The Registry for Agentic Intelligence',
             },
+            {
+                name: 'description',
+                content:
+                    'Discover, publish, and operate reusable agent capabilities from a route-driven workspace.',
+            },
         ],
         links: [
             {
