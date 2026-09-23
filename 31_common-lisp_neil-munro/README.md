@@ -1,8 +1,9 @@
 ## Compiler
 
-- We are using `sbcl` compiler.
+- We are using `sbcl` Common Lisp compiler.
+- We are using `quicklisp` for library manager for Common Lisp.
 
-## Run
+## Execute
 
 ```sh
 sbcl --script hello.lisp
